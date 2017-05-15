@@ -1,5 +1,10 @@
 import mongoose from 'mongoose'
+import helper from './helper-functions'
 
-export default mongoose.Schema({
+let schema = mongoose.Schema({
     name: String
 })
+
+helper.makeFieldsRequired(schema)
+
+export default schema
