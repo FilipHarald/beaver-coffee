@@ -24,7 +24,7 @@ let schema = mongoose.Schema({
     workPrecentage: Number
   },
   comments: {
-    commenter{
+    commenter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Employee'
     },

@@ -1,25 +1,20 @@
 import resource from 'resource-router-middleware';
-import mongoose from 'mongoose'
-import productSchema from '../models/product'
-let modelString = 'Product'
 
-let Product = mongoose.model(modelString, productSchema);
-
-export default ({ config, db }) => resource({
+export default ({ config, db , mongooseModel, modelName}) => resource({
 
 	/** Property name to store preloaded entity on `request`. */
-	id : 'product',
+	id : modelName,
 
 	/** For requests with an `id`, you can auto-load the entity.
 	 *  Errors terminate the request, success sets `req[id] = data`.
 	 */
 	load(req, id, callback) {
-		Product.findOne( {_id: id} )
-    .then((product) => {
-      if (!product) {
-        callback(modelString + ' not found', null)
+		mongooseModel.findOne( {_id: id} )
+    .then((obj) => {
+      if (!obj) {
+        callback(modelName + ' not found', null)
       } else {
-        callback(null, product)
+        callback(null, obj)
       }
     }, (err) => {
       callback(err, null)
@@ -28,16 +23,16 @@ export default ({ config, db }) => resource({
 
 	/** GET / - List all entities */
 	index({ params }, res) {
-		Product.find({})
-    .then((products) => {
-      res.json(products)
+		mongooseModel.find({})
+    .then((objs) => {
+      res.json(objs)
     })
 	},
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
     console.log(body)
-		new Product(body).save()
+		new mongooseModel(body).save()
     .then((result) => {
       console.log('DB result:' + result)
       res.status(201).send()
@@ -48,21 +43,21 @@ export default ({ config, db }) => resource({
 	},
 
 	/** GET /:id - Return a given entity */
-	read({ product }, res) {
-		res.json(product);
+	read({ obj }, res) {
+		res.json(obj);
 	},
 
 	/** PUT /:id - Update a given entity */
-	update({ product, body }, res) {
-		product.update(body)
+	update({ obj, body }, res) {
+		obj.update(body)
     .then((result) => {
       res.status(204).json(result)
     })
 	},
 
 	/** DELETE /:id - Delete a given entity */
-	delete({ product }, res) {
-		Product.delete({product})
+	delete({ obj }, res) {
+		mongooseModel.delete({obj})
     .then((result) => {
       console.log('DB response from delete: ' + result)
       res.status(204).send(result)
