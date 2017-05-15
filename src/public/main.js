@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2600,7 +2600,7 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(6);
@@ -2640,6 +2640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2655,7 +2656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Home__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Order__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Order__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Order__);
 
 
@@ -2675,13 +2676,13 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(4),
   /* template */
-  __webpack_require__(8),
+  __webpack_require__(9),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\App.vue"
+Component.options.__file = "/Users/topic/code/beaver-coffee/src/vue/components/App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2709,13 +2710,13 @@ var Component = __webpack_require__(0)(
   /* script */
   null,
   /* template */
-  __webpack_require__(9),
+  __webpack_require__(10),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\Home.vue"
+Component.options.__file = "/Users/topic/code/beaver-coffee/src/vue/components/Home.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Home.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2739,15 +2740,51 @@ module.exports = Component.exports
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var Component = __webpack_require__(0)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(11),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/topic/code/beaver-coffee/src/vue/components/Order.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Order.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-72d96a32", Component.options)
+  } else {
+    hotAPI.reload("data-v-72d96a32", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', {
+    staticClass: "section"
+  }, [_c('div', {
     staticClass: "button",
     on: {
       "click": function($event) {
         _vm.$router.go(-1)
       }
     }
-  }, [_vm._v("Back")]), _vm._v(" "), _c('router-view')], 1)
+  }, [_vm._v("Back")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('router-view')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -2758,76 +2795,67 @@ if (false) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "columns"
-  }, [_c('div', {
-    staticClass: "column"
-  }, [_c('div', {
-    staticClass: "section is-grouped"
-  }, [_c('h1', {
+  return _c('div', [_c('h1', {
     staticClass: "title"
-  }, [_vm._v("Day-to-day")]), _vm._v(" "), _c('router-link', {
+  }, [_vm._v("Day-to-day")]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-primary",
     attrs: {
-      "to": "/order"
+      "to": "/add_order"
     }
-  }, [_vm._v("Add new order")]), _vm._v(" "), _c('a', {
-    staticClass: "button is-primary",
-    attrs: {
-      "href": "add_order.html"
-    }
-  }, [_vm._v("Add new order")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Add new order")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-info",
     attrs: {
-      "href": "add_customer.html"
+      "to": "/add_customer"
     }
-  }, [_vm._v("Add new customer")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Add new customer")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-warning",
     attrs: {
-      "href": "generate_report.html"
+      "to": "/generate_report"
     }
-  }, [_vm._v("Generate new report(s)")])], 1)]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "column"
-  }, [_c('div', {
-    staticClass: "section is-grouped"
-  }, [_c('h1', {
+  }, [_vm._v("Generate new report(s)")])], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h1', {
     staticClass: "title"
-  }, [_vm._v("Management")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Management")]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-default",
     attrs: {
-      "href": "manage_stock.html"
+      "to": "/manage_stock"
     }
-  }, [_vm._v("Manage stock")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Manage stock")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-default",
     attrs: {
-      "href": "manage_customers.html"
+      "to": "/manage_customers"
     }
-  }, [_vm._v("Manage customer")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Manage customer")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-default",
     attrs: {
-      "href": "manage_employees.html"
+      "to": "/manage_employees"
     }
-  }, [_vm._v("Manage employees")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "column"
-  }, [_c('div', {
-    staticClass: "section is-grouped"
-  }, [_c('h1', {
+  }, [_vm._v("Manage employees")])], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h1', {
     staticClass: "title"
-  }, [_vm._v("Global")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("Global")]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('router-link', {
     staticClass: "button is-default",
     attrs: {
-      "href": "manage_products.html"
+      "to": "/manage_products"
     }
-  }, [_vm._v("Manage products")])])])
-}]}
+  }, [_vm._v("Manage products")])], 1)])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -2837,7 +2865,120 @@ if (false) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "section"
+  }, [_c('a', {
+    staticClass: "button is-default title is-5",
+    attrs: {
+      "href": "index.html"
+    }
+  }, [_vm._v("Back to start")]), _vm._v(" "), _c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('div', {
+    staticClass: "card-header-title"
+  }, [_vm._v("Enter an order")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('form', {
+    attrs: {
+      "action": ""
+    }
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Customer ID")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "customer_id"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Product(s)")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('span', {
+    staticClass: "select is-fullwidth"
+  }, [_c('select', {
+    attrs: {
+      "name": "products",
+      "id": "products"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("Lite längre namn")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('ul', [_c('li', {
+    staticClass: "tag",
+    staticStyle: {
+      "display": "flex",
+      "width": "100%",
+      "justify-content": "flex-start"
+    }
+  }, [_vm._v("Tag 1 "), _c('button', {
+    staticClass: "delete is-small",
+    staticStyle: {
+      "margin-left": "auto"
+    }
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-default is-fullwidth",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("Clear fields")])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-success is-fullwidth",
+    attrs: {
+      "href": "#",
+      "type": "submit",
+      "id": "btn_place_order"
+    }
+  }, [_vm._v("Place order")])])])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-72d96a32", module.exports)
+  }
+}
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12532,10 +12673,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 var g;
@@ -12562,162 +12703,12 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
 module.exports = __webpack_require__(3);
 
-
-/***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  null,
-  /* template */
-  __webpack_require__(17),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\Order.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Order.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-72d96a32", Component.options)
-  } else {
-    hotAPI.reload("data-v-72d96a32", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "section"
-  }, [_c('a', {
-    staticClass: "button is-default title is-5",
-    attrs: {
-      "href": "index.html"
-    }
-  }, [_vm._v("Back to start")]), _vm._v(" "), _c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('div', {
-    staticClass: "card-header-title"
-  }, [_vm._v("Enter an order")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-content"
-  }, [_c('form', {
-    attrs: {
-      "action": ""
-    }
-  }, [_c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('p', [_c('strong', [_vm._v("Customer ID")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('input', {
-    staticClass: "input",
-    attrs: {
-      "type": "text",
-      "id": "customer_id"
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('p', [_c('strong', [_vm._v("Product(s)")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('span', {
-    staticClass: "select is-fullwidth"
-  }, [_c('select', {
-    attrs: {
-      "name": "products",
-      "id": "products"
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "3"
-    }
-  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "4"
-    }
-  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "5"
-    }
-  }, [_vm._v("Lite längre namn")])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('ul', [_c('li', {
-    staticClass: "tag",
-    staticStyle: {
-      "display": "flex",
-      "width": "100%",
-      "justify-content": "flex-start"
-    }
-  }, [_vm._v("Tag 1 "), _c('button', {
-    staticClass: "delete is-small",
-    staticStyle: {
-      "margin-left": "auto"
-    }
-  })])])])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('button', {
-    staticClass: "button is-default is-fullwidth",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("Clear fields")])])]), _vm._v(" "), _c('div', {
-    staticClass: "field"
-  }, [_c('div', {
-    staticClass: "control"
-  }, [_c('button', {
-    staticClass: "button is-success is-fullwidth",
-    attrs: {
-      "href": "#",
-      "type": "submit",
-      "id": "btn_place_order"
-    }
-  }, [_vm._v("Place order")])])])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-72d96a32", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

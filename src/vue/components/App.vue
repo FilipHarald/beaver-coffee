@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="section">
     <div class="button" @click="$router.go(-1)">Back</div>
+    <hr>
     <router-view></router-view>
   </div>
 </template>
