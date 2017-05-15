@@ -52,17 +52,22 @@ export default ({ config, db }) => resource({
 
 	/** PUT /:id - Update a given entity */
 	update({ kitty, body }, res) {
-		for (let key in body) {
-			if (key!=='id') {
-				kitty[key] = body[key];
-			}
-		}
+		kitty.update(body)
+    .then((response) => {
+      res.json(response)
+    })
 		res.sendStatus(204);
 	},
 
 	/** DELETE /:id - Delete a given entity */
 	delete({ kitty }, res) {
-		kitties.splice(kitties.indexOf(kitty), 1);
-		res.sendStatus(204);
+		Kitten.delete({kitty})
+    .then((response) => {
+      console.log('DB response from delete: ' + response)
+      res.sendStatus(204)
+    }).catch((err) => {
+      res.json(err)
+      res.sendStatus(500)
+    })
 	}
 });
