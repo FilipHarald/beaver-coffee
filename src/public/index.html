@@ -3,8 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
 </head>
 <body>
-  <input type="text" id="name"><button href="#">stuff</button>
+  <div class="columns">
+    <div class="column">
+      <div class="section is-grouped">
+        <h1 class="title">Day-to-day</h1>
+        <a href="add_order.html" class="button is-primary">Add new order</a>
+        <a href="add_customer.html" class="button is-info">Add new customer</a>
+        <a href="generate_report.html" class="button is-warning">Generate new report(s)</a>
+      </div>
+
+    </div>
+    <div class="column">
+      <div class="section is-grouped">
+        <h1 class="title">Management</h1>
+        <a href="manage_stock.html" class="button is-default">Manage stock</a>
+        <a href="manage_customers.html" class="button is-default">Manage customer</a>
+        <a href="manage_employees.html" class="button is-default">Manage employees</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

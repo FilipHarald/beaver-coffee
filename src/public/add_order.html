@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
+</head>
+<body>
+  <div class="section">
+    <a href="index.html" class="button is-default title is-5">Back to start</a>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-title">Enter an order</div>
+      </div>
+      <div class="card-content">
+        <form action="">
+          <div class="field">
+            <div class="control">
+              <p><strong>Customer ID</strong></p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input type="text" id="customer_id" class="input">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <p><strong>Product(s)</strong></p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <span class="select is-fullwidth">
+                <select name="products" id="products">
+                  <option value="3">Lite längre namn</option>
+                  <option value="4">Lite längre namn</option>
+                  <option value="5">Lite längre namn</option>
+                </select>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <ul>
+                <li class="tag" style="display: flex; width: 100%; justify-content: flex-start;">Tag 1 <button class="delete is-small" style="margin-left: auto"></button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button href="#" class="button is-default is-fullwidth">Clear fields</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button href="#" type="submit" class="button is-success is-fullwidth">Place order</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
