@@ -4,8 +4,13 @@ import helper from './_helper-functions'
 let schema = mongoose.Schema({
     name: String,
     location: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Location'
+        address: String,
+        zip: String,
+        country:{
+          name: String,
+          currency: String,
+          countryCode: String
+        }
     },
     stock: {
       type: [mongoose.Schema.Types.ObjectId],

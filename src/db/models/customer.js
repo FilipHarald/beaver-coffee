@@ -13,8 +13,11 @@ let schema = mongoose.Schema({
   name: String,
   occupation: String,
   location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Location'
+    address: String,
+    zip: String,
+    country:{
+      name: String
+    }
   },
   clubCard: {
     sparse: true,
