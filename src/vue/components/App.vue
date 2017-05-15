@@ -1,7 +1,9 @@
 <template>
   <div class="section">
-    <div class="button" @click="$router.go(-1)">Back</div>
-    <hr>
+    <div v-if="!isHome">
+      <router-link class="button" to="/">Back</router-link>
+      <hr>
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +13,11 @@
     data () {
       return {
 
+      }
+    },
+    computed: {
+      isHome () {
+        return this.$route.path === '/'
       }
     }
   }

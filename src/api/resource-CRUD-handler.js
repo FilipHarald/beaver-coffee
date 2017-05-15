@@ -43,20 +43,13 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
 
  /** POST / - Create a new entity */
  async create({ body }, res) {
-  if (body.location) {
-    try {
-      body.location = (await new Location(body.location).save())._id
-    } catch (err) {
-      return handleError(err, res)
-    }
-  }
   new MongooseModel(body).save()
-  .then((result) => {
-    console.log('DB result:' + result)
-    res.status(201).send(result)
-  }).catch((err) => {
-   handleError(err, res)
- })
+    .then((result) => {
+      console.log('DB result:' + result)
+      res.status(201).send(result)
+    }).catch((err) => {
+     handleError(err, res)
+   })
 },
 
 /** GET /:id - Return a given entity */

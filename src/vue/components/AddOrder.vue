@@ -5,6 +5,7 @@
     </div>
     <div class="card-content">
       <form action="">
+        {{ $router.store }}
         <div class="field">
           <label for="" class="label">Customer ID</label>
           <div class="control">
@@ -78,10 +79,13 @@
         },
         products: [],
         selectedProduct: null,
+        selectedCashier: null,
+        store: null,
       }
     },
 
     created() {
+      // Get products
       fetch('/api/products', {
         method: 'get',
       })
@@ -98,21 +102,24 @@
         console.log(err)
       })
 
-      fetch('/api/stores/', {
+      // Get stores
+      fetch(`/api/stores/${this.$router.store}`, {
         method: 'get',
       })
       .then(result => {
         this.products = [
-          { _id: 123, name: 'hej'},
-          { _id: 1234, name: 'hejsan'},
-          { _id: 1235, name: 'hejdu'},
-          { _id: 1236, name: 'hejasda'},
         ]
         console.log(result.json())
       })
       .catch(err => {
         console.log(err)
       })
+    },
+
+    computed: {
+      cashiers() {
+        return this.store ? this.store.employees.filter(e => !e.endDate || new Date(e.endDate) < new Date()) : []
+      }
     },
 
     methods: {

@@ -1,5 +1,8 @@
 import mongoose from 'mongoose'
 import helper from './_helper-functions'
+import Product from './product'
+import Employee from './employee'
+import Order from './order'
 
 let schema = mongoose.Schema({
     name: String,
@@ -13,16 +16,16 @@ let schema = mongoose.Schema({
         }
     },
     stock: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'Product'
+      type: [Product],
+      required: false
     },
     employees: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'Employee'
+      type: [Employee],
+      required: false
     },
     orders: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'Product'
+      type: [Order],
+      required: false
     }
 })
 

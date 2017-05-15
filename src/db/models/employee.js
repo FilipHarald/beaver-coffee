@@ -27,15 +27,20 @@ let schema = mongoose.Schema({
     workPrecentage: Number
   },
   comments: {
-    commenter: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Employee'
-    },
-    date: {
-      type: Date,
-      default: (new Date())
-    },
-    text: String
+    type: [
+      {
+        author: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Employee'
+        },
+        date: {
+          type: Date,
+          default: (new Date())
+        },
+        text: String
+      }
+    ],
+    required: false
   }
 })
 
