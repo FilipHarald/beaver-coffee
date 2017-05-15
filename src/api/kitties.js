@@ -1,0 +1,65 @@
+import resource from 'resource-router-middleware';
+import mongoose from 'mongoose'
+import kittySchema from '../models/kitties'
+
+let Kitten = mongoose.model('Kitten', kittySchema);
+
+export default ({ config, db }) => resource({
+
+	/** Property name to store preloaded entity on `request`. */
+	id : 'kitty',
+
+	/** For requests with an `id`, you can auto-load the entity.
+	 *  Errors terminate the request, success sets `req[id] = data`.
+	 */
+	load(req, id, callback) {
+		Kitten.findOne( {_id: id} )
+    .then((kitty) => {
+      if (!kitty) {
+        callback('Kitty not found', null)
+      } else {
+        callback(null, kitty)
+      }
+    }, (err) => {
+      callback(err, null)
+    })
+	},
+
+	/** GET / - List all entities */
+	index({ params }, res) {
+		res.json(Kitten.find({}).exec())
+	},
+
+	/** POST / - Create a new entity */
+	create({ body }, res) {
+		new Kitten(body)
+    .then((response) => {
+      console.log('DB response:' + response)
+      res.json(response)
+    }).catch((err) => {
+      console.error('DB error' + err)
+      res.json(err)
+    })
+	},
+
+	/** GET /:id - Return a given entity */
+	read({ kitty }, res) {
+		res.json(kitty);
+	},
+
+	/** PUT /:id - Update a given entity */
+	update({ kitty, body }, res) {
+		for (let key in body) {
+			if (key!=='id') {
+				kitty[key] = body[key];
+			}
+		}
+		res.sendStatus(204);
+	},
+
+	/** DELETE /:id - Delete a given entity */
+	delete({ kitty }, res) {
+		kitties.splice(kitties.indexOf(kitty), 1);
+		res.sendStatus(204);
+	}
+});
