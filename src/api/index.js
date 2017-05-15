@@ -10,32 +10,32 @@ import employeeSchema from '../models/employee'
 import customerSchema from '../models/customer'
 
 export default ({ config, db }) => {
-	let api = Router();
+  let api = Router();
 
-	api.use('/kitties', genericHandler({ config, db,
-		mongooseModel: mongoose.model('Kitty', productSchema),
-		modelName: 'Kitty'
-	}));
- 	api.use('/products', genericHandler({ config, db,
-		mongooseModel: mongoose.model('Product', productSchema),
-		modelName: 'Product'
-	}));
-	api.use('/stores', genericHandler({ config, db,
-		mongooseModel: mongoose.model('Store', productSchema),
-		modelName: 'Store'
-	}));
-	api.use('/employees', genericHandler({ config, db,
-		mongooseModel: mongoose.model('Store', productSchema),
-		modelName: 'Store'
-	}));
-	api.use('/customers', genericHandler({ config, db,
-		mongooseModel: mongoose.model('Store', productSchema),
-		modelName: 'Store'
-	}));
+  api.use('/kitties', genericHandler({ config, db,
+    MongooseModel: mongoose.model('Kitty', productSchema),
+    modelName: 'Kitty'
+  }));
+  api.use('/products', genericHandler({ config, db,
+    MongooseModel: mongoose.model('Product', productSchema),
+    modelName: 'Product'
+  }));
+  api.use('/stores', genericHandler({ config, db,
+    MongooseModel: mongoose.model('Store', storeSchema),
+    modelName: 'Store'
+  }));
+  api.use('/employees', genericHandler({ config, db,
+    MongooseModel: mongoose.model('Employee', employeeSchema),
+    modelName: 'Employee'
+  }));
+  api.use('/customers', genericHandler({ config, db,
+    MongooseModel: mongoose.model('Customer', customerSchema),
+    modelName: 'Customer'
+  }));
 
-	api.get('/', (req, res) => {
-		res.json({ version });
-	});
+  api.get('/', (req, res) => {
+    res.json({ version });
+  });
 
-	return api;
+  return api;
 }
