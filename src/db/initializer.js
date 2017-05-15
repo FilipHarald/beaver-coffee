@@ -7,7 +7,7 @@ export default callback => {
 	const db = mongoose.connection
 	db.on('error', console.error.bind(console, 'connection error:'))
 	db.once('open', () => {
-    console.log('DB successfully connected! Now seeding...')
+    console.log('DB successfully connected!')
     seed()
     .then(() => {
       console.log('Seeding done!');

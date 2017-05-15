@@ -2,26 +2,26 @@ import mongoose from 'mongoose'
 import helper from './_helper-functions'
 
 let schema = mongoose.Schema({
-  type: {
+  productType: {
     type: String,
     enum: ['Product', 'Ingredient']
   },
   name: String,
   price: {
     type: Object,
-    required: false
+    required: false // Only used for Product
   },
   unit: String,
   ingredients: {
-    type: [{
-        product: {
-          type: [mongoose.Schema.Types.ObjectId],
-          ref: 'Product',
-        },
+    type: [
+      {
+        name: String,
+        unit: String,
         amount: Number
-      }],
-    required: false
-  },
+      }
+    ],
+    required: false // Only used for Product
+  }
 })
 
 helper.makeFieldsRequired(schema)
