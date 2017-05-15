@@ -36,6 +36,7 @@ export default ({ config, db }) => resource({
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
+    console.log(body)
 		new Product(body).save()
     .then((result) => {
       console.log('DB result:' + result)

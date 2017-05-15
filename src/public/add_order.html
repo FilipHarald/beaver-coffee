@@ -57,7 +57,7 @@
 
           <div class="field">
             <div class="control">
-              <button href="#" type="submit" class="button is-success is-fullwidth">Place order</button>
+              <button href="#" type="submit" class="button is-success is-fullwidth" id="btn_place_order">Place order</button>
             </div>
           </div>
         </form>
@@ -65,5 +65,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.onload = () => {
+      document.getElementById("btn_place_order").onclick = (e) => {
+        e.preventDefault()
+        console.log("hej");
+      }
+    }
+  </script>
 </body>
 </html>

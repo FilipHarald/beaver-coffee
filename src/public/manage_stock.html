@@ -60,7 +60,7 @@
 
         <div class="columns">
           <div class="column">
-          <div class="field control">
+            <div class="field control">
               <p class="title is-5">Amount</p>
             </div>
             <input type="text" class="input" name="product_amount">
@@ -75,12 +75,37 @@
             <button class="button is-danger is-fullwidth">Delete product</button>
           </div>
           <div class="column">
-            <button class="button is-success is-fullwidth">Save</button>
+            <button class="button is-success is-fullwidth" id="btn_save">Save</button>
           </div>
         </div>
 
       </div>
     </div>
   </div>
+
+  <script>
+    window.onload = () => {
+      document.getElementById("btn_save").onclick = (e) => {
+        e.preventDefault()
+        console.log("hej");
+
+        fetch('http://localhost:8080/api/products', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            type: 'beverage',
+            name: 'latte',
+            price: { se: 10 },
+            ingredients: [],
+            amount: { unit: 'kg', value: 5 }
+          })
+        })
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+      }
+    }
+  </script>
 </body>
 </html>
