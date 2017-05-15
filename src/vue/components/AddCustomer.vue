@@ -1,97 +1,159 @@
 <template>
-  <div class="section">
-    <a href="index.html" class="button is-default title is-5">Back to start</a>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-header-title">Add customer to CoffeeBeaver club</div>
-      </div>
-      <div class="card-content">
-        <form action="">
-          <div class="field">
-            <div class="control">
-              <p><strong>ID (SSN/Personnummer)</strong></p>
-            </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-title">Add customer to CoffeeBeaver club</div>
+    </div>
+    <div class="card-content">
+      <form action="">
+        <div class="field">
+          <div class="control">
+            <p><strong>ID (SSN/Personnummer)</strong></p>
           </div>
-          <div class="field">
-            <div class="control">
-              <input type="text" id="customer_id" class="input">
-            </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input ref="personId" v-model="newCustomer.personId" type="text" id="customer_id" class="input" autofocus>
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <p><strong>Name</strong></p>
-            </div>
+        <div class="field">
+          <div class="control">
+            <p><strong>Name</strong></p>
           </div>
-          <div class="field">
-            <div class="control">
-              <input type="text" id="customer_name" class="input">
-            </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input v-model="newCustomer.name" type="text" id="customer_name" class="input">
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <p><strong>Occupation</strong></p>
-            </div>
+        <div class="field">
+          <div class="control">
+            <p><strong>Occupation</strong></p>
           </div>
-          <div class="field">
-            <div class="control">
-              <input type="text" id="customer_occupation" class="input">
-            </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input v-model="newCustomer.occupation" type="text" id="customer_occupation" class="input">
           </div>
+        </div>
 
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <div class="control">
-                  <p><strong>Address</strong></p>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input type="text" id="address" class="input">
-                </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <p><strong>Address</strong></p>
               </div>
             </div>
-            <div class="column">
-              <div class="field">
-                <div class="control">
-                  <p><strong>Zip code</strong></p>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input type="text" id="address_zip" class="input">
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <div class="control">
-                  <p><strong>Country</strong></p>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input type="text" id="address_country" class="input">
-                </div>
+            <div class="field">
+              <div class="control">
+                <input v-model="newCustomer.location.address" type="text" id="address" class="input">
               </div>
             </div>
           </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <p><strong>Zip code</strong></p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input v-model="newCustomer.location.zip" type="text" id="address_zip" class="input">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <div class="control">
+                <p><strong>Country</strong></p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input v-model="newCustomer.location.country.name" type="text" id="address_country" class="input">
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <button href="#" type="submit" class="button is-default is-fullwidth">Clear fields</button>
-            </div>
+        <div class="field">
+          <div class="control">
+            <button @click="reset" href="#" type="submit" class="button is-default is-fullwidth">Clear fields</button>
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <button href="#" type="submit" class="button is-success is-fullwidth">Save customer</button>
-            </div>
+        <div class="field">
+          <div class="control">
+            <button href="#" type="submit" class="button is-success is-fullwidth" @click.stop="save">Save customer</button>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <div v-if="errors" class="notification is-danger">{{ errors }}</div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        errors: '',
+        newCustomer: {
+          personId: '',
+          name: '',
+          occupation: '',
+          location: {
+            address: '',
+            zip: '',
+            country: {
+              name: '',
+            },
+          },
+        }
+      }
+    },
+
+    methods: {
+      save() {
+        fetch('/api/customers', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.newCustomer)
+        })
+        .then(result => {
+          if (!result.ok) {
+            result.json().then(x => this.errors = x.errmsg)
+          } else {
+            this.reset()
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      },
+
+      reset() {
+        this.newCustomer = {
+          personId: '',
+          name: '',
+          occupation: '',
+          location: {
+            address: '',
+            zip: '',
+            country: {
+              name: '',
+            },
+          },
+        }
+
+        this.$refs.personId.focus()
+      }
+    }
+  }
+</script>

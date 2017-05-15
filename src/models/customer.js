@@ -17,12 +17,16 @@ let schema = mongoose.Schema({
     ref: 'Location'
   },
   clubCard: {
-    number: {
-      type: Number,
-      unique: true
-    },
-    country: String,
-    orders: Number,
+    sparse: true,
+    required: false,
+    type: {
+      number: {
+        type: Number,
+        unique: true
+      },
+      country: String,
+      orders: Number,
+    }
   }
 })
 
