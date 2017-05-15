@@ -1,10 +1,6 @@
 import mongoose from 'mongoose'
 
 export default mongoose.Schema({
-  orderItems: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Product'
-  },
   date: {
     type: Date,
     default: (new Date())
@@ -18,20 +14,14 @@ export default mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Employee',
   },
-  store: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'Store',
-  },
   items: {
     type: [
         {
           name: String,
-          type: String,
+          productType: String,
           price: Number,
-          amount: {
-            unit: String,
-            value: Number
-          }
+          amount: Number,
+          unit: String
         }
     ]
   }
