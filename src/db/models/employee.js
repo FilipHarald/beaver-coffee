@@ -8,8 +8,11 @@ let schema = mongoose.Schema({
   },
   name: String,
   location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Location'
+      address: String,
+      zip: String,
+      country:{
+        name: String
+      }
   },
   position: {
     name: String,

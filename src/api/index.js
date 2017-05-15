@@ -1,6 +1,5 @@
 import { version } from '../../package.json'
 import { Router } from 'express'
-import mongoose from 'mongoose'
 import genericHandler from './resource-CRUD-handler'
 
 import productSchema from '../db/models/product'
@@ -12,19 +11,22 @@ export default ({ config, db }) => {
   let api = Router();
 
   api.use('/products', genericHandler({ config, db,
-    MongooseModel: mongoose.model('Product', productSchema),
+    MongooseModel: db.model('Product', productSchema),
     modelName: 'Product'
   }));
+
   api.use('/stores', genericHandler({ config, db,
-    MongooseModel: mongoose.model('Store', storeSchema),
+    MongooseModel: db.model('Store', storeSchema),
     modelName: 'Store'
   }));
+
   api.use('/employees', genericHandler({ config, db,
-    MongooseModel: mongoose.model('Employee', employeeSchema),
+    MongooseModel: db.model('Employee', employeeSchema),
     modelName: 'Employee'
   }));
+
   api.use('/customers', genericHandler({ config, db,
-    MongooseModel: mongoose.model('Customer', customerSchema),
+    MongooseModel: db.model('Customer', customerSchema),
     modelName: 'Customer'
   }));
 
