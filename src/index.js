@@ -7,6 +7,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+import path from 'path'
 
 let app = express();
 app.server = http.createServer(app);
@@ -22,6 +23,9 @@ app.use(cors({
 app.use(bodyParser.json({
 	limit : config.bodyLimit
 }));
+
+// Mount static folder
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 // connect to db
 initializeDb( db => {
