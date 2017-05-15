@@ -8,7 +8,11 @@ export default callback => {
 	db.on('error', console.error.bind(console, 'connection error:'))
 	db.once('open', () => {
     console.log('DB successfully connected!')
-    seed()
+    db.dropDatabase()
+    .then((result) => {
+      console.log('Database dropped: ' + result);
+      return seed()
+    })
     .then(() => {
       console.log('Seeding done!');
     })
