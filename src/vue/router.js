@@ -1,10 +1,13 @@
 import VueRouter from 'vue-router'
 import Home from './components/Home'
-import Order from './components/Order'
+import AddOrder from './components/AddOrder'
+import AddCustomer from './components/AddCustomer'
+import ManageStock from './components/ManageStock'
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/order', component: Order }
+  { path: '/add_order', component: AddOrder },
+  { path: '/manage_stock', component: ManageStock }
 ]
 
 export default new VueRouter({

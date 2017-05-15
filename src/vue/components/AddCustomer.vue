@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
-</head>
-<body>
+<template>
   <div class="section">
     <a href="index.html" class="button is-default title is-5">Back to start</a>
     <div class="card">
@@ -101,5 +94,4 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+</template>

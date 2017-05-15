@@ -2656,13 +2656,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Home__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Home__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Order__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Order__);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_AddOrder__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_AddOrder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_AddOrder__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_AddCustomer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_AddCustomer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_AddCustomer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ManageStock__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ManageStock___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ManageStock__);
+>>>>>>> 09f3929e0244f39ee961f8e92f645465dba16e8b
 
 
 
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_1__components_Home___default.a }, { path: '/order', component: __WEBPACK_IMPORTED_MODULE_2__components_Order___default.a }];
+
+
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_1__components_Home___default.a }, { path: '/add_order', component: __WEBPACK_IMPORTED_MODULE_2__components_AddOrder___default.a }, { path: '/manage_stock', component: __WEBPACK_IMPORTED_MODULE_4__components_ManageStock___default.a }];
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   routes: routes
@@ -2737,7 +2748,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 8 */
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -2865,6 +2877,7 @@ if (false) {
 }
 
 /***/ }),
+<<<<<<< HEAD
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2978,6 +2991,9 @@ if (false) {
 }
 
 /***/ }),
+=======
+/* 11 */,
+>>>>>>> 09f3929e0244f39ee961f8e92f645465dba16e8b
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12710,5 +12726,515 @@ __webpack_require__(2);
 module.exports = __webpack_require__(3);
 
 
+<<<<<<< HEAD
+=======
+/***/ }),
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(22),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\AddCustomer.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AddCustomer.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-371a55fa", Component.options)
+  } else {
+    hotAPI.reload("data-v-371a55fa", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(23),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\AddOrder.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AddOrder.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4001570e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4001570e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(24),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\albertk\\Code\\beaver-coffee\\src\\vue\\components\\ManageStock.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageStock.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d1fd115", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d1fd115", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "section"
+  }, [_c('a', {
+    staticClass: "button is-default title is-5",
+    attrs: {
+      "href": "index.html"
+    }
+  }, [_vm._v("Back to start")]), _vm._v(" "), _c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('div', {
+    staticClass: "card-header-title"
+  }, [_vm._v("Add customer to CoffeeBeaver club")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('form', {
+    attrs: {
+      "action": ""
+    }
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("ID (SSN/Personnummer)")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "customer_id"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Name")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "customer_name"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Occupation")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "customer_occupation"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Address")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "address"
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Zip code")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "address_zip"
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Country")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "address_country"
+    }
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-default is-fullwidth",
+    attrs: {
+      "href": "#",
+      "type": "submit"
+    }
+  }, [_vm._v("Clear fields")])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-success is-fullwidth",
+    attrs: {
+      "href": "#",
+      "type": "submit"
+    }
+  }, [_vm._v("Save customer")])])])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-371a55fa", module.exports)
+  }
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "section"
+  }, [_c('a', {
+    staticClass: "button is-default title is-5",
+    attrs: {
+      "href": "index.html"
+    }
+  }, [_vm._v("Back to start")]), _vm._v(" "), _c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('div', {
+    staticClass: "card-header-title"
+  }, [_vm._v("Enter an order")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('form', {
+    attrs: {
+      "action": ""
+    }
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Customer ID")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "id": "customer_id"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('p', [_c('strong', [_vm._v("Product(s)")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('span', {
+    staticClass: "select is-fullwidth"
+  }, [_c('select', {
+    attrs: {
+      "name": "products",
+      "id": "products"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("Lite längre namn")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('ul', [_c('li', {
+    staticClass: "tag",
+    staticStyle: {
+      "display": "flex",
+      "width": "100%",
+      "justify-content": "flex-start"
+    }
+  }, [_vm._v("Tag 1 "), _c('button', {
+    staticClass: "delete is-small",
+    staticStyle: {
+      "margin-left": "auto"
+    }
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-default is-fullwidth",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("Clear fields")])])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('button', {
+    staticClass: "button is-success is-fullwidth",
+    attrs: {
+      "href": "#",
+      "type": "submit",
+      "id": "btn_place_order"
+    }
+  }, [_vm._v("Place order")])])])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4001570e", module.exports)
+  }
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "section"
+  }, [_c('a', {
+    staticClass: "button is-default title is-5",
+    attrs: {
+      "href": "index.html"
+    }
+  }, [_vm._v("Back to start")]), _vm._v(" "), _c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('div', {
+    staticClass: "card-header-title"
+  }, [_vm._v("Manage stock")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_vm._v("Select a product")])]), _vm._v(" "), _c('div', {
+    staticClass: "field"
+  }, [_c('div', {
+    staticClass: "control"
+  }, [_c('span', {
+    staticClass: "select is-fullwidth"
+  }, [_c('select', {
+    attrs: {
+      "name": "products",
+      "id": "products"
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("Lite längre namn")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("Lite längre namn")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field control"
+  }, [_c('p', {
+    staticClass: "title is-5"
+  }, [_vm._v("ID")])]), _vm._v(" "), _c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "name": "product_id"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field control"
+  }, [_c('p', {
+    staticClass: "title is-5"
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "name": "product_name"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field control"
+  }, [_c('p', {
+    staticClass: "title is-5"
+  }, [_vm._v("Type")])]), _vm._v(" "), _c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "name": "product_type"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field control"
+  }, [_c('p', {
+    staticClass: "title is-5"
+  }, [_vm._v("Price")])]), _vm._v(" "), _c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "name": "product_price"
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('div', {
+    staticClass: "field control"
+  }, [_c('p', {
+    staticClass: "title is-5"
+  }, [_vm._v("Amount")])]), _vm._v(" "), _c('input', {
+    staticClass: "input",
+    attrs: {
+      "type": "text",
+      "name": "product_amount"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  })]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+    staticClass: "columns"
+  }, [_c('div', {
+    staticClass: "column"
+  }, [_c('button', {
+    staticClass: "button is-danger is-fullwidth"
+  }, [_vm._v("Delete product")])]), _vm._v(" "), _c('div', {
+    staticClass: "column"
+  }, [_c('button', {
+    staticClass: "button is-success is-fullwidth",
+    attrs: {
+      "id": "btn_save"
+    }
+  }, [_vm._v("Save")])])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7d1fd115", module.exports)
+  }
+}
+
+>>>>>>> 09f3929e0244f39ee961f8e92f645465dba16e8b
 /***/ })
 /******/ ]);
