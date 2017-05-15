@@ -27,12 +27,15 @@ export default ({ config, db }) => resource({
 
 	/** GET / - List all entities */
 	index({ params }, res) {
-		res.json(Kitten.find({}).exec())
+		Kitten.find({})
+    .then((kitties) => {
+      res.json(kitties)
+    })
 	},
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
-		new Kitten(body)
+		new Kitten(body).save()
     .then((response) => {
       console.log('DB response:' + response)
       res.json(response)
