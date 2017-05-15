@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="section">
     <div class="button" @click="$router.go(-1)">Back</div>
     <router-view></router-view>
   </div>

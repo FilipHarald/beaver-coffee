@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css" />
-</head>
-<body>
+<template>
   <div class="section">
     <a href="index.html" class="button is-default title is-5">Back to start</a>
     <div class="card">
@@ -82,30 +75,4 @@
       </div>
     </div>
   </div>
-
-  <script>
-    window.onload = () => {
-      document.getElementById("btn_save").onclick = (e) => {
-        e.preventDefault()
-        console.log("hej");
-
-        fetch('http://localhost:8080/api/products', {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            type: 'beverage',
-            name: 'latte',
-            price: { se: 10 },
-            ingredients: [],
-            amount: { unit: 'kg', value: 5 }
-          })
-        })
-        .then(response => console.log(response))
-        .catch(err => console.log(err))
-      }
-    }
-  </script>
-</body>
-</html>
+</template>
