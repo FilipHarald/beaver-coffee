@@ -1,25 +1,25 @@
 import resource from 'resource-router-middleware';
 import mongoose from 'mongoose'
-import kittySchema from '../models/kitties'
-let modelString = 'Kitten'
+import productSchema from '../models/products'
+let modelString = 'Product'
 
-let Kitten = mongoose.model(modelString, kittySchema);
+let Product = mongoose.model(modelString, productSchema);
 
 export default ({ config, db }) => resource({
 
 	/** Property name to store preloaded entity on `request`. */
-	id : 'kitty',
+	id : 'product',
 
 	/** For requests with an `id`, you can auto-load the entity.
 	 *  Errors terminate the request, success sets `req[id] = data`.
 	 */
 	load(req, id, callback) {
-		Kitten.findOne( {_id: id} )
-    .then((kitty) => {
-      if (!kitty) {
+		Product.findOne( {_id: id} )
+    .then((product) => {
+      if (!product) {
         callback(modelString + ' not found', null)
       } else {
-        callback(null, kitty)
+        callback(null, product)
       }
     }, (err) => {
       callback(err, null)
@@ -28,15 +28,15 @@ export default ({ config, db }) => resource({
 
 	/** GET / - List all entities */
 	index({ params }, res) {
-		Kitten.find({})
-    .then((kitties) => {
-      res.json(kitties)
+		Product.find({})
+    .then((products) => {
+      res.json(products)
     })
 	},
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
-		new Kitten(body).save()
+		new Product(body).save()
     .then((response) => {
       console.log('DB response:' + response)
       res.json(response)
@@ -47,13 +47,13 @@ export default ({ config, db }) => resource({
 	},
 
 	/** GET /:id - Return a given entity */
-	read({ kitty }, res) {
-		res.json(kitty);
+	read({ product }, res) {
+		res.json(product);
 	},
 
 	/** PUT /:id - Update a given entity */
-	update({ kitty, body }, res) {
-		kitty.update(body)
+	update({ product, body }, res) {
+		product.update(body)
     .then((response) => {
       res.json(response)
     })
@@ -61,8 +61,8 @@ export default ({ config, db }) => resource({
 	},
 
 	/** DELETE /:id - Delete a given entity */
-	delete({ kitty }, res) {
-		Kitten.delete({kitty})
+	delete({ product }, res) {
+		Product.delete({product})
     .then((response) => {
       console.log('DB response from delete: ' + response)
       res.sendStatus(204)
