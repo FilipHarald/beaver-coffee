@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import helper from './helper-functions'
+import helper from './_helper-functions'
 
 let schema = mongoose.Schema({
     name: String

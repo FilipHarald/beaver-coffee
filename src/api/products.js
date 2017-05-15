@@ -1,6 +1,6 @@
 import resource from 'resource-router-middleware';
 import mongoose from 'mongoose'
-import productSchema from '../models/products'
+import productSchema from '../models/product'
 let modelString = 'Product'
 
 let Product = mongoose.model(modelString, productSchema);

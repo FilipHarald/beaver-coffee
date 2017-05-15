@@ -1,6 +1,6 @@
 import resource from 'resource-router-middleware';
 import mongoose from 'mongoose'
-import kittySchema from '../models/kitties'
+import kittySchema from '../models/kitty'
 let modelString = 'Kitten'
 
 let Kitten = mongoose.model(modelString, kittySchema);
