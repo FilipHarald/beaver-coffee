@@ -37,12 +37,12 @@ export default ({ config, db }) => resource({
 	/** POST / - Create a new entity */
 	create({ body }, res) {
 		new Product(body).save()
-    .then((response) => {
-      console.log('DB response:' + response)
-      res.json(response)
+    .then((result) => {
+      console.log('DB result:' + result)
+      res.status(201).send()
     }).catch((err) => {
       console.error('DB error' + err)
-      res.json(err)
+			res.status(400).json(err)
     })
 	},
 
@@ -54,21 +54,19 @@ export default ({ config, db }) => resource({
 	/** PUT /:id - Update a given entity */
 	update({ product, body }, res) {
 		product.update(body)
-    .then((response) => {
-      res.json(response)
+    .then((result) => {
+      res.status(204).json(result)
     })
-		res.sendStatus(204);
 	},
 
 	/** DELETE /:id - Delete a given entity */
 	delete({ product }, res) {
 		Product.delete({product})
-    .then((response) => {
-      console.log('DB response from delete: ' + response)
-      res.sendStatus(204)
+    .then((result) => {
+      console.log('DB response from delete: ' + result)
+      res.status(204).send(result)
     }).catch((err) => {
-      res.json(err)
-      res.sendStatus(500)
+			res.status(500).json(err)
     })
 	}
 });
