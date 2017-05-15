@@ -1,8 +1,8 @@
 const seed = (mongoose) => {
+  console.log('=== CUSTOMERS ===')
   const Customer = mongoose.model('Customer')
-  console.log('...customers')
   return Promise.all(customers.map(async (customer) => {
-    console.log('-->' + customer.name)
+    console.log('-' + customer.name)
     return await new Customer(customer).save()
     .catch((err) => {
       console.error('ERROR: ' + err);
@@ -17,7 +17,7 @@ const customers = [
     occupation: 'Kulare',
     location: {
       address: 'Kulgatan 1',
-      zip: 1337,
+      zip: '1337',
       country: {
         name: 'Sweden'
       }

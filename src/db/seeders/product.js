@@ -1,8 +1,8 @@
 const seed = (mongoose) => {
+  console.log('=== PRODUCTS ===')
   const Product = mongoose.model('Product')
-  console.log('...products')
   return Promise.all(products.map(async (product) => {
-    console.log('-->' + product.name)
+    console.log('-' + product.name)
     return await new Product(product).save()
     .catch((err) => {
       console.error('ERROR: ' + err);

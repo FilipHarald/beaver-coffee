@@ -1,8 +1,8 @@
 const seed = (mongoose) => {
+  console.log('=== STORES ===')
   const Store = mongoose.model('Store')
-  console.log('...stores')
   return Promise.all(stores.map(async (store) => {
-    console.log('-->' + store.name)
+    console.log('-' + store.name)
     return await new Store(store).save()
     .catch((err) => {
       console.error('ERROR: ' + err);
@@ -42,13 +42,28 @@ const stores = [
         name: 'Albert Einstein',
         location: {
           address: 'Alalalal',
-          zip: 1234,
+          zip: '1234',
           country: {
             name: 'Germany'
           }
         },
         position: {
           name: 'Cashier',
+          workPrecentage: 100
+        }
+      },
+      {
+        personId: '19991212-3939',
+        name: 'Bruce Wayne',
+        location: {
+          address: 'Waynes Mannor',
+          zip: '222333',
+          country: {
+            name: 'USA'
+          }
+        },
+        position: {
+          name: 'Manager',
           workPrecentage: 100
         }
       }
