@@ -22,8 +22,7 @@ const products = [
     price: {
       se: 20,
       en: 2.5
-    },
-    amount: 1
+    }
   }
 ]
 
