@@ -3,7 +3,6 @@ import { Router } from 'express'
 import mongoose from 'mongoose'
 import genericHandler from './resource-CRUD-handler'
 
-import kittySchema from '../db/models/kitty'
 import productSchema from '../db/models/product'
 import storeSchema from '../db/models/store'
 import employeeSchema from '../db/models/employee'
@@ -12,10 +11,6 @@ import customerSchema from '../db/models/customer'
 export default ({ config, db }) => {
   let api = Router();
 
-  api.use('/kitties', genericHandler({ config, db,
-    MongooseModel: mongoose.model('Kitty', productSchema),
-    modelName: 'Kitty'
-  }));
   api.use('/products', genericHandler({ config, db,
     MongooseModel: mongoose.model('Product', productSchema),
     modelName: 'Product'
