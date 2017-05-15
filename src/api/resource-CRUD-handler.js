@@ -53,8 +53,10 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
 },
 
 /** GET /:id - Return a given entity */
-read({ obj }, res) {
-  res.json(obj);
+read(req, res) {
+  const model = req[modelName]
+  //MongooseModel.find({ _id: body})
+  res.json(model);
 },
 
 /** PUT /:id - Update a given entity */

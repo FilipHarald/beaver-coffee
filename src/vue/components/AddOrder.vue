@@ -26,8 +26,8 @@
         <div class="field">
           <div class="control">
             <ul>
-              <li v-for="item in newOrder.orderItems" :key="item._id" class="tag is-medium">{{ item.name }}
-                <button @click="removeItem(item)" class="delete is-small" style="margin-left: auto"></button>
+              <li v-for="(item, index) in newOrder.items" :key="item._id" class="tag is-medium">{{ item.name }}
+                <button @click="removeItem(index)" class="delete is-small" style="margin-left: auto"></button>
               </li>
             </ul>
           </div>
@@ -90,26 +90,18 @@
         method: 'get',
       })
       .then(result => {
-        this.products = [
-          { _id: 123, name: 'hej'},
-          { _id: 1234, name: 'hejsan'},
-          { _id: 1235, name: 'hejdu'},
-          { _id: 1236, name: 'hejasda'},
-        ]
-        console.log(result.json())
+        result.json().then(x => this.products = x)
       })
       .catch(err => {
         console.log(err)
       })
 
-      // Get stores
+      // Get store
       fetch(`/api/stores/${this.$router.store}`, {
         method: 'get',
       })
       .then(result => {
-        this.products = [
-        ]
-        console.log(result.json())
+        result.json().then(x => this.store = x)
       })
       .catch(err => {
         console.log(err)
@@ -159,8 +151,8 @@
         this.$refs.customerId.focus()
       },
 
-      removeItem(item) {
-        this.newOrder.items = this.newOrder.items.filter(i => i._id != item._id)
+      removeItem(index) {
+        this.newOrder.items = this.newOrder.items.filter((item, i) => i !== index)
       }
     }
   }

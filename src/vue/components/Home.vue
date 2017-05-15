@@ -42,11 +42,7 @@
         method: 'get',
       })
       .then(result => {
-        //result.json().then(x => this.stores = x)
-        this.stores = [
-          { _id: 1, name: 'store 1' },
-          { _id: 2, name: 'store 2' }
-        ]
+        result.json().then(x => this.stores = x)
       })
       .catch(err => {
         console.log(err)
