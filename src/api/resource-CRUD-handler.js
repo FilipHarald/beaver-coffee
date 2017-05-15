@@ -1,6 +1,6 @@
 import resource from 'resource-router-middleware'
 import mongoose from 'mongoose'
-import locationSchema from '../models/location'
+import locationSchema from '../db/models/location'
 
 const Location = mongoose.model('Location', locationSchema)
 

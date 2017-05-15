@@ -3,11 +3,11 @@ import { Router } from 'express'
 import mongoose from 'mongoose'
 import genericHandler from './resource-CRUD-handler'
 
-import kittySchema from '../models/kitty'
-import productSchema from '../models/product'
-import storeSchema from '../models/store'
-import employeeSchema from '../models/employee'
-import customerSchema from '../models/customer'
+import kittySchema from '../db/models/kitty'
+import productSchema from '../db/models/product'
+import storeSchema from '../db/models/store'
+import employeeSchema from '../db/models/employee'
+import customerSchema from '../db/models/customer'
 
 export default ({ config, db }) => {
   let api = Router();
