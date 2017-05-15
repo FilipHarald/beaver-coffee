@@ -7,7 +7,8 @@ import ManageStock from './components/ManageStock'
 const routes = [
   { path: '/', component: Home },
   { path: '/add_order', component: AddOrder },
-  { path: '/manage_stock', component: ManageStock }
+  { path: '/manage_stock', component: ManageStock },
+  { path: '/add_customer', component: AddCustomer }
 ]
 
 export default new VueRouter({
