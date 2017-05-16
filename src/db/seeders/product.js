@@ -5,7 +5,7 @@ const seed = (mongoose) => {
     console.log('-' + product.name)
     return await new Product(product).save()
     .catch((err) => {
-      console.error('ERROR: ' + err);
+      console.error('ERROR in products: ' + err);
     })
   }))
 }

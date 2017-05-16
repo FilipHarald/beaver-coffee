@@ -1,26 +1,23 @@
 const seed = (mongoose) => {
   console.log('=== ORDERS ===')
-  const Customer = mongoose.model('Customer')
-  const Employee = mongoose.model('Employee')
-  const Order = mongoose.model('Order')
-  return Customer.findOne({}).exec()
+  return mongoose.model('Customer').findOne()
   .then((customer) => {
-    console.log('found');
+    console.log('No DB error in customer: ' + customer); // Customer can still be null.
     orders.map((order) => {
       order.customer = customer._id
     })
-    return Employee.findOne({}).exec()
-  }).then(() => {
+    return mongoose.model('Employee').findOne()
+  }).then((employee) => {
     orders.map((order) => {
       order.employee = employee._id
     })
     return Promise.all(orders.map((order, n) => {
       console.log('-' + n)
-      return new Order(order).save()
+      return new mongoose.model('Order')(order).save()
     }))
   })
   .catch((err) => {
-    console.error('ERROR: ' + err);
+    console.error('ERROR in orders: ' + err)
   })
 }
 

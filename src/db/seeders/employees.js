@@ -1,20 +1,20 @@
-const seed = (mongoose) => {
+const seed = async (mongoose) => {
   console.log('=== EMPLOYEES ===')
   const Employee = mongoose.model('Employee')
   console.log('-' + manager.name)
-  return new Employee(manager).save()
-  .then((manager) => {
-    return Promise.all(employees.map((employee) => {
+  return await new Employee(manager).save()
+  .then(async (manager) => {
+    return await Promise.all(employees.map(async (employee) => {
       console.log('-' + employee.name)
       employee.comments.push({ // All employees get the same comment
         author: manager._id,
         text: 'He is lazy...'
       })
-      return new Employee(employee).save()
+      return await new Employee(employee).save()
     }))
   })
   .catch((err) => {
-    console.error('ERROR: ' + err);
+    console.error('ERROR in employees: ' + err)
   })
 }
 

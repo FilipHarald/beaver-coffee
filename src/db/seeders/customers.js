@@ -1,11 +1,15 @@
-const seed = (mongoose) => {
+const seed = async (mongoose) => {
   console.log('=== CUSTOMERS ===')
   const Customer = mongoose.model('Customer')
-  return Promise.all(customers.map(async (customer) => {
+  return await Promise.all(customers.map((customer) => {
     console.log('-' + customer.name)
-    return await new Customer(customer).save()
+    return new Customer(customer).save()
+    .then((res) => {
+      console.log('Customer stored!' + res)
+      return Promise.resolve(res)
+    })
     .catch((err) => {
-      console.error('ERROR: ' + err);
+      console.error('ERROR in customers: ' + err)
     })
   }))
 }

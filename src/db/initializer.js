@@ -20,6 +20,9 @@ export default callback => {
     .then(() => {
       console.log(green + 'Seeding done!' + reset);
     })
+    .catch((err) => {
+      console.error('ERROR in DB init: ' + err);
+    })
 	})
 	callback(db)
 }
