@@ -31,4 +31,6 @@ let schema = mongoose.Schema({
 
 helper.makeFieldsRequired(schema)
 
+mongoose.model('Store', schema)
+
 export default schema

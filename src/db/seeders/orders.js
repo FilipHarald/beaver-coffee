@@ -1,24 +1,21 @@
-const seed = (mongoose) => {
+const seed = async (mongoose) => {
+  const Order = mongoose.model('Order')
+
   console.log('=== ORDERS ===')
-  return mongoose.model('Customer').findOne()
-  .then((customer) => {
-    console.log('No DB error in customer: ' + customer); // Customer can still be null.
-    orders.map((order) => {
+  for (let order of orders) {
+    try {
+      const customer = await mongoose.model('Customer').findOne()
+      const employee = await mongoose.model('Employee').findOne()
+
       order.customer = customer._id
-    })
-    return mongoose.model('Employee').findOne()
-  }).then((employee) => {
-    orders.map((order) => {
-      order.employee = employee._id
-    })
-    return Promise.all(orders.map((order, n) => {
-      console.log('-' + n)
-      return new mongoose.model('Order')(order).save()
-    }))
-  })
-  .catch((err) => {
-    console.error('ERROR in orders: ' + err)
-  })
+      order.cashier = employee._id
+
+      await new Order(order).save()
+      console.log(`Order saved`)
+    } catch (err) {
+      console.log('ERROR ORDERS: ' + err)
+    }
+  }
 }
 
 const orders = [

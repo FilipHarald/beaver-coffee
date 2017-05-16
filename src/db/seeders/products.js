@@ -1,13 +1,17 @@
-const seed = (mongoose) => {
-  console.log('=== PRODUCTS ===')
+const seed = async (mongoose) => {
   const Product = mongoose.model('Product')
-  return Promise.all(products.map(async (product) => {
-    console.log('-' + product.name)
-    return await new Product(product).save()
-    .catch((err) => {
+
+  console.log('=== PRODUCTS ===')
+  for (let product of products) {
+    console.log(`- ${product.name}`)
+
+    try {
+      let res = await new Product(product).save()
+      console.log(`Product ${product.name} saved`)
+    } catch (err) {
       console.error('ERROR in products: ' + err);
-    })
-  }))
+    }
+  }
 }
 
 const products = [

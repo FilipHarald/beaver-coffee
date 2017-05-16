@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import models from './models'
 import seed from './seeder'
 const green = '\x1b[32m'
 const cyan = '\x1b[36m'
@@ -13,16 +14,17 @@ export default callback => {
 	db.once('open', () => {
     console.log(green + 'DB successfully connected!')
     db.dropDatabase()
-    .then((result) => {
-      console.log(yellow + 'Old database dropped...' + cyan);
-      return seed()
-    })
-    .then(() => {
-      console.log(green + 'Seeding done!' + reset);
-    })
-    .catch((err) => {
-      console.error('ERROR in DB init: ' + err);
-    })
+      .then(async (result) => {
+        console.log(yellow + 'Old database dropped...' + cyan);
+
+        return await seed()
+      })
+      .then(() => {
+        console.log(green + 'Seeding done!' + reset);
+      })
+      .catch((err) => {
+        console.error('ERROR in DB init: ' + err);
+      })
 	})
 	callback(db)
 }

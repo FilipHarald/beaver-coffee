@@ -1,13 +1,17 @@
-const seed = (mongoose) => {
-  console.log('=== STORES ===')
+const seed = async (mongoose) => {
   const Store = mongoose.model('Store')
-  return Promise.all(stores.map(async (store) => {
-    console.log('-' + store.name)
-    return await new Store(store).save()
-    .catch((err) => {
-      console.error('ERROR: ' + err);
-    })
-  }))
+
+  console.log('=== STORES ===')
+  for (let store of stores) {
+    console.log(`- ${store.name}`)
+
+    try {
+      let res = await new Store(store).save()
+      console.log(`Store ${store.name} saved`)
+    } catch (err) {
+      console.error('ERROR IN STORES: ' + err);
+    }
+  }
 }
 
 const stores = [

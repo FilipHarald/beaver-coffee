@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export default mongoose.Schema({
+const schema = mongoose.Schema({
   date: {
     type: Date,
     default: (new Date())
@@ -26,3 +26,7 @@ export default mongoose.Schema({
     ]
   }
 })
+
+mongoose.model('Order', schema)
+
+export default schema

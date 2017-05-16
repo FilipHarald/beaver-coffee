@@ -1,24 +1,33 @@
 const seed = async (mongoose) => {
-  console.log('=== EMPLOYEES ===')
   const Employee = mongoose.model('Employee')
-  console.log('-' + manager.name)
-  return await new Employee(manager).save()
-  .then(async (manager) => {
-    return await Promise.all(employees.map(async (employee) => {
-      console.log('-' + employee.name)
+
+  console.log('=== EMPLOYEES ===')
+  let manager = null
+  try {
+    console.log('-' + managerData.name)
+    manager = await new Employee(managerData).save()
+  } catch (err) {
+    console.log('ERROR MANAGER: ' + err)
+  }
+
+  if (manager) {
+    for (let employee of employees) {
       employee.comments.push({ // All employees get the same comment
         author: manager._id,
         text: 'He is lazy...'
       })
-      return await new Employee(employee).save()
-    }))
-  })
-  .catch((err) => {
-    console.error('ERROR in employees: ' + err)
-  })
+
+      try {
+        await new Employee(employee).save()
+        console.log(`Employee ${employee.name} saved`)
+      } catch (err) {
+        console.log('ERROR CUSTOMERS: ' + err)
+      }
+    }
+  }
 }
 
-const manager = {
+const managerData = {
     personId: '19991212-3939',
     name: 'Bruce Wayne',
     location: {
