@@ -3,7 +3,6 @@
     <div class="card-header">
       <div class="card-header-title">Enter an order</div>
     </div>
-    {{  }}
     <div class="card-content">
       <form action="">
         <div class="field">
@@ -69,7 +68,11 @@
 </template>
 
 <script>
+  import Store from '../mixins/store'
+
   export default {
+    mixins: [Store],
+
     data() {
       return {
         errors: '',
@@ -92,13 +95,6 @@
       cashiers() {
         return this.store ? this.store.employees.filter(e => !e.endDate || new Date(e.endDate) < new Date()) : []
       },
-    },
-
-    mounted() {
-      if (this.$router.store != null)
-        this.setStore(this.$router.store)
-      else
-        this.$router.stores.then(res => this.setStore(res[0]._id))
     },
 
     methods: {
