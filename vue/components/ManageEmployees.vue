@@ -80,7 +80,7 @@
 
       <h2 class="title">Comments</h2>
       <div v-for="comment in comments" :key="comment">
-        {{ commentAuthor(comment) }} - {{ comment.text }}
+        {{ author(comment).name }} - {{ comment.date }} - {{ comment.text }}
       </div>
     </div>
   </div>
@@ -128,8 +128,8 @@
         }
       },
 
-      commentAuthor (comment) {
-        this.store.employees.find(employee => comment.author === employee._id)
+      author (comment) {
+        return this.store.employees.find(employee => comment.author === employee._id)
       }
     },
 
@@ -140,23 +140,14 @@
     },
 
     created () {
-      //this.employees = this.$router.store.employees
-      this.$router.stores
-        .then(stores => (this.store = this.stores[0]))
-
       this.selectedEmployee = this.newEmployee()
 
-      fetch('/api/employees')
-      .then(result => result.json())
-      .then(json => {
-        this.employees = json
-        this.selectedEmployee = this.employees[0]
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
-
+      this.$router.stores
+        .then(stores => {
+          this.store = stores[0]
+          this.employees = this.store.employees
+          this.selectedEmployee = this.employees[0]
+        })
     }
   }
 </script>

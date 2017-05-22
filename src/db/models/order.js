@@ -6,12 +6,12 @@ const schema = mongoose.Schema({
     default: (new Date())
   },
   customer: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer',
     required: false
   },
   cashier: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Employee',
   },
   items: {

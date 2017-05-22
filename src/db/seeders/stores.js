@@ -70,6 +70,22 @@ const stores = [
           name: 'Manager',
           workPrecentage: 100
         }
+      },
+      {
+        personId: '1337-7331',
+        name: 'Winston Churchill',
+        location: {
+          address: 'Nottingham street 4',
+          zip: '9001',
+          country: {
+            name: 'United Kingdom'
+          }
+        },
+        position: {
+          name: 'Cashier',
+          workPrecentage: 50
+        },
+        comments: []
       }
     ]
   },

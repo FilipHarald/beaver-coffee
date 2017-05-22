@@ -1,16 +1,19 @@
 const seed = async (mongoose) => {
   const Order = mongoose.model('Order')
+  const Store = mongoose.model('Store')
 
   console.log('=== ORDERS ===')
+  const store = await Store.findOne()
   for (let order of orders) {
     try {
       const customer = await mongoose.model('Customer').findOne()
-      const employee = await mongoose.model('Employee').findOne()
+      const employee = store.employees[0]
 
       order.customer = customer._id
       order.cashier = employee._id
 
-      await new Order(order).save()
+      store.orders.push(order)
+      await store.save()
       console.log(`Order saved`)
     } catch (err) {
       console.log('ERROR ORDERS: ' + err)
