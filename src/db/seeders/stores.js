@@ -28,16 +28,16 @@ const stores = [
     },
     stock: [
       {
-        name: 'Coffee Beans',
+        name: '2% Milk',
         productType: 'Ingredient',
-        unit: 'kg',
+        unit: 'liter',
         amount: 50
       },
       {
-        name: 'Milk',
+        name: 'Espresso Roast',
         productType: 'Ingredient',
-        unit: 'liter',
-        amount: 25
+        unit: 'kg',
+        amount: 50
       }
     ],
     employees: [
@@ -102,16 +102,22 @@ const stores = [
     },
     stock: [
       {
-        name: 'Coffee Beans',
-        productType: 'Ingredient',
-        unit: 'kg',
-        amount: 50
-      },
-      {
-        name: 'Milk',
+        name: '2% Milk',
         productType: 'Ingredient',
         unit: 'liter',
-        amount: 25
+        amount: 10
+      },
+      {
+        name: 'Espresso Roast',
+        productType: 'Ingredient',
+        unit: 'kg',
+        amount: 60
+      },
+      {
+        name: 'Cocoa Mix',
+        productType: 'Ingredient',
+        unit: 'kg',
+        amount: 100
       }
     ],
     employees: [
