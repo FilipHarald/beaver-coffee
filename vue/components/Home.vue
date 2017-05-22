@@ -30,33 +30,25 @@
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         selectedStore: null,
         stores: [],
       }
     },
 
-    methods: {
-      setStore () {
-        this.$router.store = this.selectedStore
-      }
+    created() {
+      this.getStores()
     },
 
-    created () {
-      fetch('/api/stores', {
-        method: 'get',
-      })
-      .then(result => {
-        result.json().then(x => {
-          this.stores = x
+    methods: {
+      getStores() {
+         this.$router.stores.then(res => this.stores = res)
+      },
 
-          this.selectedStore = this.stores[0]
-        })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      setStore () {
+        this.$router.store = this.selectedStore
+      },
     }
   }
 </script>
