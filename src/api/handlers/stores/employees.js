@@ -1,25 +1,51 @@
+import utils from '../../utils'
+
 export default function Employees (Store) {
-  const list = (req, res) => {
-    Store.findOne({ _id: req.params.id}, { employees: 1 } )
-      .then((store) => {
-        if (store) {
-          res.json(store.employees)
-        } else {
-          res.sendStatus(404)
-        }
-      }).catch((err) => {
-        utils.handleError(err, res)
-      })
+  const list = async (req, res) => {
+    try {
+      const store = await Store.findOne({ _id: req.params.id }, { employees: 1 })
+
+      store && res.json(store.employees) || res.sendStatus(404)
+    } catch (err) {
+      utils.handleError(err, res)
+    }
   }
 
+  /*
   const get = (req, res) => {
+    Store.findOne({ _id: req.params.id, 'employees. })
+  }
+  */
 
+  const create = async (req, res) => {
+    try {
+      const store = await Store.findOne({ _id: req.params.id})
+      store.employees.push(req.body)
+      await store.save()
+
+      res.json(store.employees)
+    } catch (err) {
+      utils.handleError(err, res)
+    }
   }
 
-  const create = (req, res) => {
-  }
+  const update = async (req, res) => {
+    try {
+      const store = await Store.findOneAndUpdate(
+        {
+          _id: req.params.id,
+          'employees._id': req.params.employeeId
+        },
+        {
+          '$set': {
+            'employees.$': req.body
+          }
+        })
 
-  const update = (req, res) => {
+      res.json(store.employees)
+    } catch (err) {
+      utils.handleError(err, res)
+    }
   }
 
   const destroy = (req, res) => {
@@ -27,7 +53,7 @@ export default function Employees (Store) {
 
   return {
     list,
-    get,
+    //get,
     create,
     update,
     destroy

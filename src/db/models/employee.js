@@ -24,7 +24,7 @@ let schema = mongoose.Schema({
       type: Date,
       required: false
     },
-    workPrecentage: Number
+    workPercentage: Number
   },
   comments: {
     type: [

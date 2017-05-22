@@ -3,7 +3,7 @@
     <div class="card-header">
       <div class="card-header-title space-between">
         <div>Manage Employees</div>
-        <div class="field is-pulled-right">
+        <div class="field">
           <div class="control">
             <span class="select is-fullwidth">
               <select v-model="selectedEmployee" @change="employee = selectedEmployee">
@@ -52,6 +52,25 @@
               <label for="" class="label">Country</label>
               <div class="control">
                 <input v-model="employee.location.country.name" type="text" id="address_country" class="input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label for="" class="label">Position</label>
+              <div class="control">
+                <input v-model="employee.position.name" type="text" id="address" class="input">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="" class="label">Work Percentage</label>
+              <div class="control">
+                <input v-model="employee.position.workPercentage" type="text" id="address_zip" class="input">
               </div>
             </div>
           </div>
@@ -145,15 +164,31 @@
       },
 
       save () {
-        const id = this.employee._id ? `/${this.selectedEmployee._id}` : ''
-        fetch(`/api/stores/${this.$store.id}/employees${id}`,
-          {
-            method: 'post',
-            body: this.selectedEmployee
-          })
+        let promise = null
+        if (this.employee._id) {
+          promise = fetch(`/api/stores/${this.store._id}/employees/${this.employee._id}`,
+            {
+              method: 'put',
+              body: JSON.stringify(this.employee),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+        } else {
+          promise = fetch(`/api/stores/${this.store._id}/employees/`,
+            {
+              method: 'post',
+              body: JSON.stringify(this.employee),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+        }
+
+        promise
           .then(result => result.json())
           .then(json => {
-            this.employees = json
+            console.log('zxc')
           })
       },
 
@@ -183,6 +218,10 @@
             country: {
               name: ''
             }
+          },
+          position: {
+            name: '',
+            workPercentage: ''
           }
         }
       },
@@ -194,7 +233,8 @@
 
     watch: {
       employees () {
-        this.employee = this.employees[0]
+        this.selectedEmployee = this.employees[0]
+        this.employee = this.selectedEmployee
       }
     },
 

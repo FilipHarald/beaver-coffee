@@ -10,20 +10,21 @@ export default ({ config, db}) => {
 
   const listOrders = (req, res) => {
     Store.findOne({ _id: req.params.id}, { orders: 1 } )
-    .then((store) => {
-      if (store) {
-        res.json(store.orders)
-      } else {
-        res.sendStatus(404)
-      }
-    }).catch((err) => {
-      utils.handleError(err, res)
-    })
+      .then((store) => {
+        if (store) {
+          res.json(store.orders)
+        } else {
+          res.sendStatus(404)
+        }
+      }).catch((err) => {
+        utils.handleError(err, res)
+      })
   }
 
   store.get('/orders', listOrders)
   store.get('/employees', employees.list)
-  store.post('/employees/:employeeId', employees.create)
+  store.post('/employees', employees.create)
+  store.put('/employees/:employeeId', employees.update)
 
   return store
 }

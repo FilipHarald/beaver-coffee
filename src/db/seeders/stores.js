@@ -53,7 +53,7 @@ const stores = [
         },
         position: {
           name: 'Cashier',
-          workPrecentage: 100
+          workPercentage: 100
         }
       },
       {
@@ -68,7 +68,7 @@ const stores = [
         },
         position: {
           name: 'Manager',
-          workPrecentage: 100
+          workPercentage: 100
         }
       },
       {
@@ -83,7 +83,7 @@ const stores = [
         },
         position: {
           name: 'Cashier',
-          workPrecentage: 50
+          workPercentage: 50
         },
         comments: []
       }
@@ -117,7 +117,7 @@ const stores = [
     employees: [
       {
         personId: '19861212-393',
-        name: 'Albert Einstein',
+        name: 'Kalle Anka',
         location: {
           address: 'Alalalal',
           zip: '1234',
@@ -127,12 +127,12 @@ const stores = [
         },
         position: {
           name: 'Cashier',
-          workPrecentage: 100
+          workPercentage: 100
         }
       },
       {
         personId: '19991212-393',
-        name: 'Bruce Wayne',
+        name: 'Steve Rogers',
         location: {
           address: 'Waynes Mannor',
           zip: '222333',
@@ -142,7 +142,7 @@ const stores = [
         },
         position: {
           name: 'Manager',
-          workPrecentage: 100
+          workPercentage: 100
         }
       }
     ]
