@@ -6,7 +6,7 @@
         <div class="field is-pulled-right">
           <div class="control">
             <span class="select is-fullwidth">
-              <select v-model="selectedEmployee">
+              <select v-model="selectedEmployee" @change="employee = selectedEmployee">
                 <option v-for="employee in employees" :key="employee" :value="employee">{{ employee.name }}</option>
               </select>
             </span>
@@ -19,14 +19,14 @@
         <div class="field">
           <label for="" class="label">ID (SSN/Personnummer)</label>
           <div class="control">
-            <input v-model="selectedEmployee.personId" type="text" id="customer_id" class="input" autofocus>
+            <input v-model="employee.personId" type="text" id="customer_id" class="input" autofocus>
           </div>
         </div>
 
         <div class="field">
           <label for="" class="label">Name</label>
           <div class="control">
-            <input v-model="selectedEmployee.name" type="text" id="customer_name" class="input">
+            <input v-model="employee.name" type="text" id="customer_name" class="input">
           </div>
         </div>
 
@@ -35,7 +35,7 @@
             <div class="field">
               <label for="" class="label">Address</label>
               <div class="control">
-                <input v-model="selectedEmployee.location.address" type="text" id="address" class="input">
+                <input v-model="employee.location.address" type="text" id="address" class="input">
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             <div class="field">
               <label for="" class="label">Zip code</label>
               <div class="control">
-                <input v-model="selectedEmployee.location.zip" type="text" id="address_zip" class="input">
+                <input v-model="employee.location.zip" type="text" id="address_zip" class="input">
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="field">
               <label for="" class="label">Country</label>
               <div class="control">
-                <input v-model="selectedEmployee.location.country.name" type="text" id="address_country" class="input">
+                <input v-model="employee.location.country.name" type="text" id="address_country" class="input">
               </div>
             </div>
           </div>
@@ -122,11 +122,14 @@
 </template>
 
 <script>
+  import Store from '../mixins/store'
+
   export default {
+    mixins: [Store],
     data () {
       return {
         store: null,
-        employees: [],
+        employee: null,
         selectedEmployee: null,
         errors: '',
         comment: {
@@ -138,12 +141,11 @@
 
     methods: {
       reset () {
-        this.employees.push(this.newEmployee())
-        this.selectedEmployee = this.newEmployee()
+        this.employee = this.newEmployee()
       },
 
       save () {
-        const id = this.selectedEmployee._id ? `/${this.selectedEmployee._id}` : ''
+        const id = this.employee._id ? `/${this.selectedEmployee._id}` : ''
         fetch(`/api/stores/${this.$store.id}/employees${id}`,
           {
             method: 'post',
@@ -157,7 +159,7 @@
 
       addComment () {
         comment.date = new Date()
-        this.selectedEmployee.comments.push(comment)
+        this.employee.comments.push(comment)
         fetch(`/api/stores/${this.store.id}/employees/${this.selectedEmployee.id}`,
           {
             method: 'post',
@@ -190,25 +192,28 @@
       }
     },
 
+    watch: {
+      employees () {
+        this.employee = this.employees[0]
+      }
+    },
+
     computed: {
       comments () {
-        return this.selectedEmployee.comments || []
+        return this.employee.comments || []
       },
 
       authors () {
-        return this.store && this.store.employees.filter(e => e.personId !== this.selectedEmployee.personId) || []
+        return this.store && this.store.employees.filter(e => e.personId !== this.employee.personId) || []
+      },
+
+      employees () {
+        return this.store && this.store.employees
       }
     },
 
     created () {
-      this.selectedEmployee = this.newEmployee()
-
-      this.$router.stores
-        .then(stores => {
-          this.store = stores[0]
-          this.employees = this.store.employees
-          this.selectedEmployee = this.employees[0]
-        })
+      this.employee = this.newEmployee()
     }
   }
 </script>
