@@ -11,8 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('src/vue/main.js', 'src/public/')
-   .stylus('src/stylus/app.stylus', 'src/public/');
+mix.js('vue/main.js', 'public/')
+   .stylus('stylus/app.stylus', 'public/');
 
 // Full API
 // mix.js(src, output);
