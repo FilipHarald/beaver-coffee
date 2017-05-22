@@ -40,7 +40,8 @@ export default function Employees (Store) {
           '$set': {
             'employees.$': req.body
           }
-        })
+        },
+        { new: true })
 
       res.json(store.employees)
     } catch (err) {
