@@ -5,6 +5,10 @@ const schema = mongoose.Schema({
     type: Date,
     default: (new Date())
   },
+  total: {
+    required: false,
+    type: Number
+  },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer',
@@ -12,7 +16,7 @@ const schema = mongoose.Schema({
   },
   cashier: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee',
+    ref: 'Employee'
   },
   items: {
     type: [

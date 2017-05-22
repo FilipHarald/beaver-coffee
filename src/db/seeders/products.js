@@ -2,32 +2,70 @@ const seed = async (mongoose) => {
   const Product = mongoose.model('Product')
 
   console.log('=== PRODUCTS ===')
-  for (let product of products) {
+  for (let product of [...ingredients,...products]) {
     console.log(`- ${product.name}`)
-
     try {
       let res = await new Product(product).save()
-      console.log(`Product ${product.name} saved`)
     } catch (err) {
       console.error('ERROR in products: ' + err);
     }
   }
 }
 
-const products = [
+let ingredients = [
   {
-    name: 'Coffee Beans',
-    productType: 'Ingredient',
+    name: 'Whole Bean French Roast',
     unit: 'kg'
   },
   {
-    name: 'Milk',
-    productType: 'Ingredient',
+    name: 'Whole Bean Light Roast',
+    unit: 'kg'
+  },
+  {
+    name: 'Espresso Roast',
+    unit: 'kg'
+  },
+  {
+    name: 'Cocoa Mix',
+    unit: 'kg'
+  },
+  {
+    name: 'Skim Milk',
     unit: 'liter'
   },
   {
-    name: 'Small Brew Coffee',
-    productType: 'Product',
+    name: 'Soy Milk',
+    unit: 'liter'
+  },
+  {
+    name: 'Whole Milk',
+    unit: 'liter'
+  },
+  {
+    name: '2% Milk',
+    unit: 'liter'
+  },
+  {
+    name: 'Cream',
+    unit: 'kg',
+  },
+  {
+    name: 'Vanilla Syrup',
+    unit: 'liter',
+  },
+  {
+    name: 'Irish Cream Syrup',
+    unit: 'liter',
+  }
+]
+
+ingredients.forEach((ingredient) => {
+  ingredient.productType = 'Ingredient'
+})
+
+let products = [
+  {
+    name: 'Brew Coffee',
     unit: 'pcs',
     price: {
       se: 20,
@@ -35,31 +73,29 @@ const products = [
     },
     ingredients: [
       {
-        name: 'Coffee Beans',
+        name: 'Whole Bean French Roast',
         unit: 'kg',
         amount: 0.008
       }
     ]
   },
   {
-    name: 'Big Brew Coffee',
-    productType: 'Product',
+    name: 'Espresso',
     unit: 'pcs',
     price: {
-      se: 30,
-      en: 3.3
+      se: 25,
+      en: 3
     },
     ingredients: [
       {
-        name: 'Coffee Beans',
+        name: 'Espresso Roast',
         unit: 'kg',
-        amount: 0.012
+        amount: 0.008
       }
     ]
   },
   {
-    name: 'Small Latte',
-    productType: 'Product',
+    name: 'Skinny Latte',
     unit: 'pcs',
     price: {
       se: 40,
@@ -67,39 +103,252 @@ const products = [
     },
     ingredients: [
       {
-        name: 'Coffee Beans',
+        name: 'Espresso Roast',
         unit: 'kg',
         amount: 0.008
       },
       {
-        name: 'Milk',
+        name: 'Skim Milk',
         unit: 'liter',
         amount: 0.3
       }
     ]
   },
   {
-    name: 'Big Latte',
-    productType: 'Product',
+    name: 'Soy Latte',
     unit: 'pcs',
     price: {
-      se: 50,
-      en: 5.9
+      se: 40,
+      en: 4.5
     },
     ingredients: [
       {
-        name: 'Coffee Beans',
+        name: 'Espresso Roast',
         unit: 'kg',
-        amount: 0.012
+        amount: 0.008
       },
       {
-        name: 'Milk',
+        name: 'Soy Milk',
         unit: 'liter',
-        amount: 0.4
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Whole Milk Latte',
+    unit: 'pcs',
+    price: {
+      se: 40,
+      en: 4.5
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: '2% Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Latte',
+    unit: 'pcs',
+    price: {
+      se: 35,
+      en: 4
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: '2% Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Skinny Cappuccino',
+    unit: 'pcs',
+    price: {
+      se: 40,
+      en: 4.5
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: 'Skim Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Soy Cappuccino',
+    unit: 'pcs',
+    price: {
+      se: 40,
+      en: 4.5
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: 'Soy Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Whole Milk Cappuccino',
+    unit: 'pcs',
+    price: {
+      se: 40,
+      en: 4.5
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: 'Whole Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Cappuccino',
+    unit: 'pcs',
+    price: {
+      se: 35,
+      en: 4
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 0.008
+      },
+      {
+        name: '2% Milk',
+        unit: 'liter',
+        amount: 0.3
+      }
+    ]
+  },
+  {
+    name: 'Whole Bean French Roast',
+    unit: 'kg',
+    price: {
+      se: 100,
+      en: 12
+    },
+    ingredients: [
+      {
+        name: 'Whole Bean French Roast',
+        unit: 'kg',
+        amount: 1
+      }
+    ]
+  },
+  {
+    name: 'Whole Bean Light Roast',
+    unit: 'kg',
+    price: {
+      se: 100,
+      en: 12
+    },
+    ingredients: [
+      {
+        name: 'Whole Bean Light Roast',
+        unit: 'kg',
+        amount: 1
+      }
+    ]
+  },
+  {
+    name: 'Espresso Roast',
+    unit: 'kg',
+    price: {
+      se: 100,
+      en: 12
+    },
+    ingredients: [
+      {
+        name: 'Espresso Roast',
+        unit: 'kg',
+        amount: 1
+      }
+    ]
+  },
+  {
+    name: 'Whipped Cream',
+    unit: 'pcs',
+    price: {
+      se: 5,
+      en: .5
+    },
+    ingredients: [
+      {
+        name: 'Cream',
+        unit: 'kg',
+        amount: 0.005
+      }
+    ]
+  },
+  {
+    name: 'Vanilla Syrup',
+    unit: 'pcs',
+    price: {
+      se: 5,
+      en: .5
+    },
+    ingredients: [
+      {
+        name: 'Vanilla Syrup',
+        unit: 'liter',
+        amount: 0.01
+      }
+    ]
+  },
+  {
+    name: 'Irish Cream Syrup',
+    unit: 'pcs',
+    price: {
+      se: 5,
+      en: .5
+    },
+    ingredients: [
+      {
+        name: 'Irish Cream Syrup',
+        unit: 'liter',
+        amount: 0.01
       }
     ]
   }
 ]
+
+products.forEach((product) => {
+  product.productType = 'Product'
+})
 
 export default {
   seed
