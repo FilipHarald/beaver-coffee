@@ -45,7 +45,7 @@
 
         <div class="field">
           <div class="control">
-            <button @click="reset" href="#" class="button is-default is-fullwidth">Clear fields</button>
+            <button @click="clear" href="#" class="button is-default is-fullwidth">Clear fields</button>
           </div>
         </div>
 
@@ -127,12 +127,12 @@
             result.json().then(x => {
               this.errors = result.status < 500 ? x.message : x.errmsg
             })
-          } else { this.reset() }
+          } else { this.clear() }
         })
         .catch(err => console.log(err))
       },
 
-      reset() {
+      clear() {
         this.newOrder = {
           customerId: '',
           items: [],

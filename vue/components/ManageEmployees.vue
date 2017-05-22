@@ -259,7 +259,5 @@
 </script>
 
 <style>
-  .space-between {
-    justify-content: space-between;
-  }
+
 </style>
