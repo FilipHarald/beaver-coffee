@@ -35,3 +35,8 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .space-between
+    justify-content: space-between
+</style>
