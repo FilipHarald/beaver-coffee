@@ -78,6 +78,12 @@
       }
     },
 
+    watch: {
+      items() {
+        this.selectedProduct = this.items[0]
+      }
+    },
+
     methods: {
      save() {
       fetch(`/api/stores/${this.store._id}/products/${this.selectedProduct._id}`, {

@@ -124,6 +124,12 @@
       }
     },
 
+    watch: {
+      customers() {
+        this.selectedCustomer = this.customers[0]
+      }
+    },
+
     methods: {
       getCustomers() {
         fetch(`/api/customers`,
