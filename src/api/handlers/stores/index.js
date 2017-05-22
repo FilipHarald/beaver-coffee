@@ -1,12 +1,12 @@
 import { Router } from 'express'
 import storeSchema from '../../../db/models/store'
-import employees from './employees'
+import Employees from './employees'
 import utils from '../../utils'
 
 export default ({ config, db}) => {
   let store = Router({mergeParams: true})
   const Store = db.model('Store', storeSchema)
-  employees.setStore(Store)
+  const employees = Employees(Store)
 
   const listOrders = (req, res) => {
     Store.findOne({ _id: req.params.id}, { orders: 1 } )
