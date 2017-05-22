@@ -1,12 +1,14 @@
 import { Router } from 'express'
 import storeSchema from '../../../db/models/store'
 import Employees from './employees'
+import Stock from './stock'
 import utils from '../../utils'
 
 export default ({ config, db}) => {
   let store = Router({mergeParams: true})
   const Store = db.model('Store', storeSchema)
   const employees = Employees(Store)
+  const stock = Stock(Store)
 
   const listOrders = (req, res) => {
     Store.findOne({ _id: req.params.id}, { orders: 1 } )
@@ -25,6 +27,9 @@ export default ({ config, db}) => {
   store.get('/employees', employees.list)
   store.post('/employees', employees.create)
   store.put('/employees/:employeeId', employees.update)
+  store.post('/stock', stock.create)
+  store.put('/stock/:stockId', stock.update)
+  store.delete('/stock/:stockId', stock.delete)
 
   return store
 }
