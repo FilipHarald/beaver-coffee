@@ -19,6 +19,19 @@
       isHome () {
         return this.$route.path === '/'
       }
+    },
+
+    created() {
+      this.getStores()
+    },
+
+    methods: {
+      getStores() {
+        this.$router.stores = fetch('/api/stores', { method: 'get' })
+        .then(result => result.json())
+        .then(json => Promise.resolve(json))
+        .catch(err => console.log(err))
+      }
     }
   }
 </script>

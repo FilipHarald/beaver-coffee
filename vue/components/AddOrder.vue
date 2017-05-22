@@ -5,7 +5,6 @@
     </div>
     <div class="card-content">
       <form action="">
-        {{ $router.store }}
         <div class="field">
           <label for="" class="label">Customer ID</label>
           <div class="control">
@@ -85,40 +84,37 @@
     },
 
     created() {
-      // Get products
-      fetch('/api/products', {
-        method: 'get',
-      })
-      .then(result => {
-        result.json().then(x => this.products = x)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
-      // Get store
-      fetch(`/api/stores/${this.$router.store}`, {
-        method: 'get',
-      })
-      .then(result => {
-        result.json().then(x => this.store = x)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      this.getProducts()
     },
 
     computed: {
       cashiers() {
+        console.log('this store', this.store)
         return this.store ? this.store.employees.filter(e => !e.endDate || new Date(e.endDate) < new Date()) : []
       }
     },
 
+    mounted() {
+      this.$router.stores.then(res => this.setStore(res[0]._id))
+    },
+
     methods: {
+      setStore(storeId) {
+        fetch(`/api/stores/${storeId}`, { method: 'get' })
+          .then(result => result.json().then(x => this.store = x))
+          .catch(err => console.log(err))
+      },
+
+      getProducts() {
+        fetch('/api/products', { method: 'get' })
+          .then(result => result.json())
+          .then(x => this.products = x.filter(f => f.productType === 'Product'))
+          .catch(err => console.log(err))
+      },
+
       addProduct() {
         this.newOrder.items.push(this.selectedProduct)
         this.selectedProduct = null
-        console.log(this.newOrder.items)
       },
 
       save() {
@@ -128,7 +124,6 @@
           body: JSON.stringify(this.newOrder)
         })
         .then(result => {
-          console.log(result)
           if (!result.ok) {
             result.json().then(x => {
               this.errors = result.status < 500 ? x.message : x.errmsg
