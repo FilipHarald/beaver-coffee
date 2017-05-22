@@ -79,9 +79,44 @@
       <hr>
 
       <h2 class="title">Comments</h2>
-      <div v-for="comment in comments" :key="comment">
-        {{ author(comment).name }} - {{ comment.date }} - {{ comment.text }}
+      <div class="box" v-for="comment in comments" :key="comment">
+        <article class="media">
+          <div class="media-content">
+            <p>
+              <strong>{{ author(comment).name }}</strong> ({{ comment.date }})
+              <br>
+              {{ comment.text }}
+            </p>
+          </div>
+        </article>
       </div>
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <div class="field">
+            <label for="" class="label">Author</label>
+            <div class="select is-fullwidth">
+              <select v-model="comment.author">
+                <option v-for="author in authors" :key="author" :value="author._id">{{ author.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <label for="" class="label">Comment</label>
+            <div class="control">
+              <input class="input" type="text" v-model="comment.text">
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="field">
+            <label for="" class="label">&nbsp;</label>
+            <button href="#" class="button is-success is-fullwidth" @click="addComment">Add comment</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -93,7 +128,11 @@
         store: null,
         employees: [],
         selectedEmployee: null,
-        errors: ''
+        errors: '',
+        comment: {
+          author: '',
+          text: ''
+        }
       }
     },
 
@@ -116,6 +155,24 @@
           })
       },
 
+      addComment () {
+        comment.date = new Date()
+        this.selectedEmployee.comments.push(comment)
+        fetch(`/api/stores/${this.store.id}/employees/${this.selectedEmployee.id}`,
+          {
+            method: 'post',
+            body: this.selectedEmployee,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => res.json())
+          .then(json => {
+            console.log('update store instance?')
+          })
+          .catch(err => console.log(err))
+      },
+
       newEmployee () {
         return {
           personId: '',
@@ -136,6 +193,10 @@
     computed: {
       comments () {
         return this.selectedEmployee.comments || []
+      },
+
+      authors () {
+        return this.store && this.store.employees.filter(e => e.personId !== this.selectedEmployee.personId) || []
       }
     },
 
