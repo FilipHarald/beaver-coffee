@@ -1,28 +1,26 @@
 import { version } from '../../package.json'
 import { Router } from 'express'
-import genericHandler from './resource-CRUD-handler'
+import genericHandler from './handlers/generic'
+import storeHandler from './handlers/stores'
+const genericCollections = ['Product', 'Store', 'Customer']
 
 export default ({ config, db }) => {
-  let api = Router();
+  let api = Router()
 
-  api.use('/products', genericHandler({ config, db,
-    MongooseModel: db.model('Product'),
-    modelName: 'Product'
-  }));
+  api.use('/stores/:id', storeHandler({ config, db }));
 
-  api.use('/stores', genericHandler({ config, db,
-    MongooseModel: db.model('Store'),
-    modelName: 'Store'
-  }));
+  genericCollections.forEach((modelName) => {
+    api.use(
+      '/' + modelName.toLowerCase() + 's',
+      genericHandler({ config, db, modelName,
+        MongooseModel: db.model(modelName)
+      }));
+  })
 
+  // NOT GENERIC
   api.use('/employees', genericHandler({ config, db,
     MongooseModel: db.model('Employee'),
     modelName: 'Employee'
-  }));
-
-  api.use('/customers', genericHandler({ config, db,
-    MongooseModel: db.model('Customer'),
-    modelName: 'Customer'
   }));
 
   api.get('/', (req, res) => {
