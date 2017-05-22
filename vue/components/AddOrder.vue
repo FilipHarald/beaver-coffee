@@ -3,12 +3,13 @@
     <div class="card-header">
       <div class="card-header-title">Enter an order</div>
     </div>
+    {{  }}
     <div class="card-content">
       <form action="">
         <div class="field">
           <label for="" class="label">Customer ID</label>
           <div class="control">
-            <input ref="customerId" type="text" id="customer_id" class="input" autofocus>
+            <input ref="customerId" v-model="newOrder.customerId" type="text" id="customer_id" class="input" autofocus>
           </div>
         </div>
 
@@ -89,13 +90,15 @@
 
     computed: {
       cashiers() {
-        console.log('this store', this.store)
         return this.store ? this.store.employees.filter(e => !e.endDate || new Date(e.endDate) < new Date()) : []
-      }
+      },
     },
 
     mounted() {
-      this.$router.stores.then(res => this.setStore(res[0]._id))
+      if (this.$router.store != null)
+        this.setStore(this.$router.store)
+      else
+        this.$router.stores.then(res => this.setStore(res[0]._id))
     },
 
     methods: {
@@ -118,7 +121,7 @@
       },
 
       save() {
-        fetch('/api/products', {
+        fetch(`/api/stores/${this.store._id}/orders`, {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.newOrder)
@@ -128,13 +131,9 @@
             result.json().then(x => {
               this.errors = result.status < 500 ? x.message : x.errmsg
             })
-          } else {
-            this.reset()
-          }
+          } else { this.reset() }
         })
-        .catch(err => {
-          console.log(err)
-        })
+        .catch(err => console.log(err))
       },
 
       reset() {
@@ -142,7 +141,6 @@
           customerId: '',
           items: [],
         }
-
         this.$refs.customerId.focus()
       },
 
