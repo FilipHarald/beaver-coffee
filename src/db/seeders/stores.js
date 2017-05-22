@@ -6,8 +6,8 @@ const seed = async (mongoose) => {
     console.log(`- ${store.name}`)
 
     try {
-      let res = await new Store(store).save()
-      console.log(`Store ${store.name} saved with ID: ${res._id}`)
+      const res = await new Store(store).save()
+      console.log(`ID: ${res._id}`)
     } catch (err) {
       console.error('ERROR IN STORES: ' + err);
     }

@@ -8,7 +8,7 @@ const seed = async (mongoose) => {
     try {
       console.log(customer.name)
       const res = await new Customer(customer).save()
-      console.log(`Customer ${customer.name} stored!`)
+      console.log(`ID: ${res._id}`)
     } catch (err) {
       console.error('ERROR in customers: ' + err)
     }
