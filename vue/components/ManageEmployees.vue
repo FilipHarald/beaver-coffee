@@ -142,9 +142,10 @@
 
 <script>
   import Store from '../mixins/store'
+  import Api from '../mixins/api'
 
   export default {
-    mixins: [Store],
+    mixins: [Store, Api],
     data () {
       return {
         store: null,
@@ -166,46 +167,27 @@
       save () {
         let promise = null
         if (this.employee._id) {
-          promise = fetch(`/api/stores/${this.store._id}/employees/${this.employee._id}`,
-            {
-              method: 'put',
-              body: JSON.stringify(this.employee),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
+          promise = this.api('put', `/api/stores/${this.store._id}/employees/${this.employee._id}`, this.employee)
         } else {
-          promise = fetch(`/api/stores/${this.store._id}/employees/`,
-            {
-              method: 'post',
-              body: JSON.stringify(this.employee),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
+          promise = this.api('post', `/api/stores/${this.store._id}/employees/`, this.employee)
         }
 
         promise
           .then(result => result.json())
           .then(json => {
-            console.log('zxc')
+            this.store.employees = json
           })
+          .catch(err => console.log(err))
       },
 
       addComment () {
-        comment.date = new Date()
-        this.employee.comments.push(comment)
-        fetch(`/api/stores/${this.store.id}/employees/${this.selectedEmployee.id}`,
-          {
-            method: 'post',
-            body: this.selectedEmployee,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
+        this.comment.date = new Date()
+        this.employee.comments.push(this.comment)
+
+        this.api('put', `/api/stores/${this.store._id}/employees/${this.employee._id}`, this.employee)
           .then(res => res.json())
           .then(json => {
-            console.log('update store instance?')
+            this.store.employees = json
           })
           .catch(err => console.log(err))
       },
