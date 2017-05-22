@@ -23,6 +23,7 @@ const seed = async (mongoose) => {
 
 const orders = [
   {
+    total: 130,
     items: [
       {
         name: 'Big Brew Coffee',
@@ -41,6 +42,7 @@ const orders = [
     ]
   },
   {
+    total: 20,
     items: [
       {
         name: 'Small Brew Coffee',

@@ -3,6 +3,7 @@ import storeSchema from '../../../db/models/store'
 import Employees from './employees'
 import Orders from './orders'
 import Stock from './stock'
+import Report from './report'
 import utils from '../../utils'
 
 export default ({ config, db}) => {
@@ -11,6 +12,7 @@ export default ({ config, db}) => {
   const employees = Employees(Store)
   const orders = Orders(Store)
   const stock = Stock(Store)
+  const report = Report(Store)
 
   store.get('/employees', employees.list)
   store.post('/employees', employees.create)
@@ -18,6 +20,7 @@ export default ({ config, db}) => {
   store.post('/stock', stock.create)
   store.put('/stock/:stockId', stock.update)
   store.delete('/stock/:stockId', stock.delete)
+  store.get('/report', report.getSales)
 
   store.get('/orders', orders.list)
   store.post('/orders', orders.create)
