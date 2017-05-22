@@ -14,14 +14,9 @@ export default ({ config, db }) => {
       '/' + modelName.toLowerCase() + 's',
       genericHandler({ config, db, modelName,
         MongooseModel: db.model(modelName)
-      }));
+      })
+    );
   })
-
-  // NOT GENERIC
-  api.use('/employees', genericHandler({ config, db,
-    MongooseModel: db.model('Employee'),
-    modelName: 'Employee'
-  }));
 
   api.get('/', (req, res) => {
     res.json({ version });
