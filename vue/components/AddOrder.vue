@@ -36,7 +36,7 @@
           <label for="" class="label">Cashier</label>
           <div class="control">
             <span class="select is-fullwidth">
-              <select v-model="selectedCashier">
+              <select v-model="newOrder.cashier">
                 <option v-for="cashier in cashiers" :key="cashier._id" :value="cashier._id">{{ cashier.name }}</option>
               </select>
             </span>

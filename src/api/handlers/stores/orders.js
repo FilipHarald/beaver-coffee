@@ -17,13 +17,28 @@ export default function Employees (Store) {
 
   const create = async (req, res) => {
     try {
-      const store = await Store.findOne({ _id: req.params.id})
-      console.log('store', store)
-      console.log('red.body', req.body)
-      store.employees.push(req.body)
-      await store.save()
+      const store = await Store.findOne({ _id: req.params.id })
+      const items = req.body.items
 
-      res.json(store.employees)
+      const sortedItems = items.reduce((acc, val) => {
+        const item = acc.find(x => x._id === val._id)
+        if (!item) {
+          acc.push(val)
+          val.amount = 1
+          val.price = val.price[store.location.country.countryCode.toLowerCase()]
+        } else {
+          item.amount++
+        }
+        return acc
+      }, [])
+
+      req.body.items = sortedItems
+      req.body.date = new Date()
+
+      const order = store.orders.create(req.body)
+      store.orders.push(order)
+      await store.save()
+      res.json(order)
     } catch (err) {
       utils.handleError(err, res)
     }
