@@ -5,15 +5,11 @@
     </div>
     <div class="card-content">
       <div class="field">
-        <div class="control">Select a product</div>
-      </div>
-      <div class="field">
+        <label for="" class="label">Select an item</label>
         <div class="control">
           <span class="select is-fullwidth">
-            <select name="products" id="products">
-              <option value="3">Lite längre namn</option>
-              <option value="4">Lite längre namn</option>
-              <option value="5">Lite längre namn</option>
+            <select v-model="selectedProduct">
+              <option v-for="item in items" :key="item._id" :value="item">{{ item.name }}</option>
             </select>
           </span>
         </div>
@@ -21,55 +17,99 @@
 
       <div class="columns">
         <div class="column">
-          <div class="field control">
-            <p class="title is-5">ID</p>
+          <div class="field">
+            <label for="" class="label">Name</label>
+            <input type="text" class="input control" v-model="selectedProduct.name">
           </div>
-          <input type="text" class="input" name="product_id">
         </div>
         <div class="column">
-          <div class="field control">
-            <p class="title is-5">Name</p>
+          <div class="field">
+            <label for="" class="label">ID</label>
+            <input type="text" class="input control" v-model="selectedProduct._id">
           </div>
-          <input type="text" class="input" name="product_name">
         </div>
       </div>
 
       <div class="columns">
         <div class="column">
-          <div class="field control">
-            <p class="title is-5">Type</p>
+          <div class="field">
+            <label for="" class="label">Unit</label>
+            <input type="text" class="input control" v-model="selectedProduct.unit">
           </div>
-          <input type="text" class="input" name="product_type">
         </div>
         <div class="column">
-          <div class="field control">
-            <p class="title is-5">Price</p>
+          <div class="field">
+            <label for="" class="label">Amount</label>
+            <input type="number" class="input control" v-model="selectedProduct.amount">
           </div>
-          <input type="text" class="input" name="product_price">
         </div>
-      </div>
-
-      <div class="columns">
-        <div class="column">
-          <div class="field control">
-            <p class="title is-5">Amount</p>
-          </div>
-          <input type="text" class="input" name="product_amount">
-        </div>
-        <div class="column"></div>
       </div>
 
       <hr>
 
       <div class="columns">
         <div class="column">
-          <button class="button is-danger is-fullwidth">Delete product</button>
+          <button class="button is-danger is-fullwidth" @click="del">Delete item</button>
         </div>
         <div class="column">
-          <button class="button is-success is-fullwidth" id="btn_save">Save</button>
+          <button class="button is-success is-fullwidth" @click="save">Save</button>
         </div>
       </div>
 
     </div>
   </div>
 </template>
+
+<script>
+  import Store from '../mixins/store'
+
+  export default {
+    mixins: [Store],
+
+    data() {
+      return {
+        selectedProduct: {},
+      }
+    },
+
+    computed: {
+      items() {
+        if (this.store != null)
+          return this.store.stock
+        return []
+      }
+    },
+
+    methods: {
+       save() {
+        fetch(`/api/stores/${this.store._id}/products/${this.selectedProduct._id}`, {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.selectedProduct)
+        })
+        .then(result => {
+          if (!result.ok) {
+            result.json().then(x => {
+              this.errors = result.status < 500 ? x.message : x.errmsg
+            })
+          } else { this.reset() }
+        })
+        .catch(err => console.log(err))
+      },
+
+      del() {
+        fetch(`/api/stores/${this.store._id}/products/${this.selectedProduct._id}`, {
+          method: 'delete',
+        })
+        .then(result => {
+          if (!result.ok) {
+            result.json().then(x => {
+              this.errors = result.status < 500 ? x.message : x.errmsg
+            })
+          } else { this.reset() }
+        })
+        .catch(err => console.log(err))
+      },
+    }
+  }
+</script>

@@ -11,6 +11,10 @@ let schema = mongoose.Schema({
     type: Object,
     required: false // Only used for Product
   },
+  amount: {
+    type: Number,
+    required: false,
+  },
   unit: String,
   ingredients: {
     type: [

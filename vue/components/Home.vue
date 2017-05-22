@@ -3,7 +3,7 @@
     <h1 class="title">Select a store</h1>
     <div class="select is-fullwidth">
       <select v-model="selectedStore" @change="setStore">
-        <option v-for="store in stores" :key="store._id" :value="store._id">{{ store.name }}</option>
+        <option v-for="store in stores" :key="store._id" :value="store">{{ store.name }}</option>
       </select>
     </div>
 
