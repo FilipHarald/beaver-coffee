@@ -16,7 +16,6 @@
         <slot name="footer"></slot>
       </footer>
     </div>
-    <button class="modal-close" @click="hide"></button>
   </div>
 </template>
 

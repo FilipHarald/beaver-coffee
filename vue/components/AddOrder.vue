@@ -78,7 +78,7 @@
         <div class="title is-2">Total {{ savedOrder.total }} {{ currency }}</div>
       </div>
       <span slot="footer">
-        <button class="button is-info" @click="showModal = false">Close</button>
+        <button class="button is-info" @click="closeModal">Close</button>
       </span>
     </modal>
   </div>
@@ -129,6 +129,11 @@
     },
 
     methods: {
+      closeModal() {
+        this.showModal = false
+        this.clear()
+      },
+
       setStore(storeId) {
         fetch(`/api/stores/${storeId}`, { method: 'get' })
           .then(result => result.json().then(x => this.store = x))
@@ -158,9 +163,7 @@
         })
         .then(result => {
           if (!result.ok) {
-            result.json().then(x => {
-              this.errors = result.status < 500 ? x.message : x.errmsg
-            })
+            result.json().then(x => this.errors = result.status < 500 ? x.message : x.errmsg)
           } else {
             result.json().then(order => {
               this.savedOrder = order
@@ -175,6 +178,7 @@
         this.newOrder = {
           customer: '',
           items: [],
+          cashier: null,
         }
         this.$refs.customer.focus()
       },
