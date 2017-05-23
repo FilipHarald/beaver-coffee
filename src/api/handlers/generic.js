@@ -26,7 +26,6 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
   index({ params }, res) {
     MongooseModel.find({})
     .then((objs) => {
-     console.log('DB result:' + objs)
      res.json(objs)
    }).catch((err) => {
      utils.handleError(err, res)
@@ -37,7 +36,6 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
   async create({ body }, res) {
     new MongooseModel(body).save()
       .then((result) => {
-        console.log('DB result:' + result)
         res.status(201).send(result)
       }).catch((err) => {
        utils.handleError(err, res)
@@ -55,7 +53,6 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
   update({ obj, body }, res) {
     obj.update(body)
     .then((result) => {
-     console.log('DB result:' + result)
      res.status(204).json(result)
    }).catch((err) => {
      utils.handleError(err, res)
@@ -66,7 +63,6 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
   delete({ obj }, res) {
     obj.delete()
     .then((result) => {
-      console.log('DB result: ' + result)
       res.status(204).send(result)
     }).catch((err) => {
      utils.handleError(err, res)
