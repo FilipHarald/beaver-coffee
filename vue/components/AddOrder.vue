@@ -9,7 +9,7 @@
           <div class="field">
             <label for="" class="label">Customer ID</label>
             <div class="control">
-              <input ref="customerId" v-model="newOrder.customerId" type="text" id="customer_id" class="input" autofocus>
+              <input ref="customer" v-model="newOrder.customer" type="text" class="input" autofocus>
             </div>
           </div>
 
@@ -100,7 +100,7 @@
         errors: '',
         showModal: false,
         newOrder: {
-          customerId: '',
+          customer: '',
           items: [],
           cashier: null
         },
@@ -148,6 +148,9 @@
       },
 
       save() {
+        if (this.newOrder.customer === '')
+          delete this.newOrder.customer
+
         fetch(`/api/stores/${this.store._id}/orders`, {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
@@ -170,10 +173,10 @@
 
       clear() {
         this.newOrder = {
-          customerId: '',
+          customer: '',
           items: [],
         }
-        this.$refs.customerId.focus()
+        this.$refs.customer.focus()
       },
 
       removeItem(index) {

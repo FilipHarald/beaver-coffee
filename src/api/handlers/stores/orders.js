@@ -47,6 +47,15 @@ export default function Employees (Store, Customer) {
       req.body.items = groupedItems
       req.body.date = new Date()
 
+      // Replace customer's personId with their _id
+      if (req.body.customer) {
+        const actualCustomer = await Customer.findOne({ personId: req.body.customer })
+        if (!actualCustomer)
+          res.status(400).send({ message: 'No user with that ID exists' })
+        else
+          req.body.customer = actualCustomer._id
+      }
+
       const order = store.orders.create(req.body)
       store.orders.push(order)
 
@@ -60,15 +69,15 @@ export default function Employees (Store, Customer) {
   const update = async (req, res) => {
     try {
       const store = await Store.findOneAndUpdate(
-        {
-          _id: req.params.id,
-          'employees._id': req.params.employeeId
-        },
-        {
-          '$set': {
-            'employees.$': req.body
-          }
-        })
+      {
+        _id: req.params.id,
+        'employees._id': req.params.employeeId
+      },
+      {
+        '$set': {
+          'employees.$': req.body
+        }
+      })
 
       res.json(store.employees)
     } catch (err) {
