@@ -1,15 +1,14 @@
 {
-  "name": "express-es6-rest-api",
-  "version": "0.3.0",
+  "name": "beaver-coffee",
+  "version": "0.0.1",
   "description": "Starter project for an ES6 RESTful Express API",
   "main": "dist",
   "scripts": {
-    "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
-    "vue": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=development nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
+    "vue": "cross-env NODE_ENV=development ./node_modules/.bin/webpack --watch --progress --hide-modules",
     "buildvue": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "build": "./node_modules/.bin/babel src -s -D -d dist --presets env && npm run -s buildvue",
-    "start": "node dist",
-    "prestart": "npm run -s build",
+    "build": "babel src -s -D -d dist --presets env && npm run buildvue",
+    "start": "cross-env NODE_ENV=production node dist",
     "test": "eslint src"
   },
   "engines": {
@@ -36,10 +35,12 @@
     "body-parser": "^1.13.3",
     "compression": "^1.5.2",
     "cors": "^2.7.1",
+    "cross-env": "^5.0.0",
     "express": "^4.13.3",
     "mongoose": "^4.9.9",
     "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.6.0",
+    "webpack": "^2.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -49,7 +50,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "eslint": "^3.1.1",
-    "laravel-mix": "^0.11.4",
+    "laravel-mix": "^0.12.0",
     "moment": "^2.18.1",
     "nodemon": "^1.9.2",
     "stylus": "^0.54.5",

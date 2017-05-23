@@ -1,13 +1,15 @@
 import mongoose from 'mongoose'
 import models from './models'
 import seed from './seeder'
+import { mongoUrl } from './conf'
 const green = '\x1b[32m'
 const cyan = '\x1b[36m'
 const yellow = '\x1b[33m'
 const reset = '\x1b[0m'
 
 export default callback => {
-	mongoose.connect('mongodb://localhost/beaver-coffee')
+  const dbUrl = process.env.NODE_ENV === 'production' ? mongoUrl : 'mongodb://localhost/beaver-coffee'
+	mongoose.connect(dbUrl)
 	mongoose.Promise = global.Promise
 	const db = mongoose.connection
 	db.on('error', console.error.bind(console, 'connection error:'))

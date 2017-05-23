@@ -5,3 +5,4 @@
 .DS_Store
 /public/main.js
 /public/app.css
+/src/db/conf.js
