@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import Store from '../mixins/store'
+
   export default {
     data() {
       return {
@@ -42,4 +44,7 @@
   .space-between
     display: flex
     justify-content: space-between
+  .back-button
+    background-color: #ffb0b0;
+    float: right
 </style>

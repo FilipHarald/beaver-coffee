@@ -5,6 +5,7 @@ import AddCustomer from './components/AddCustomer'
 import ManageStock from './components/ManageStock'
 import ManageCustomers from './components/ManageCustomers'
 import ManageEmployees from './components/ManageEmployees'
+import RunReports from './components/RunReports'
 
 const routes = [
   { path: '/', component: Home },
@@ -12,7 +13,8 @@ const routes = [
   { path: '/add_customer', component: AddCustomer },
   { path: '/manage_stock', component: ManageStock },
   { path: '/manage_customers', component: ManageCustomers },
-  { path: '/manage_employees', component: ManageEmployees }
+  { path: '/manage_employees', component: ManageEmployees },
+  { path: '/run_reports', component: RunReports }
 ]
 
 export default new VueRouter({
