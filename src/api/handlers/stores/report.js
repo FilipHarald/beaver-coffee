@@ -2,7 +2,7 @@ import utils from '../../utils'
 
 const makeReport = (store, from, to, res) => {
   if (!store || !store.orders || store.orders.length == 0) {
-    return res.sendStatus(404)
+    return res.status(404).send({message: "Couldn't find any orders for specified time period (or employee)."})
   }
   const orders = store.orders
   let report = {}
@@ -17,7 +17,6 @@ const makeReport = (store, from, to, res) => {
   report.amountPerDay = report.totalAmount / report.amountOfDays
   return res.json(report)
 }
-
 
 export default (Store) => {
   return {
