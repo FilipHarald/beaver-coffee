@@ -14,17 +14,19 @@ let schema = mongoose.Schema({
         name: String
       }
   },
-  position: {
-    name: String,
-    startDate: {
-      type: Date,
-      default: (new Date())
-    },
-    endDate: {
-      type: Date,
-      required: false
-    },
-    workPercentage: Number
+  positions: {
+    type: [{
+      name: String,
+      startDate: {
+        type: Date,
+        default: (new Date())
+      },
+      endDate: {
+        type: Date,
+        required: false
+      },
+      workPercentage: Number
+    }]
   },
   comments: {
     type: [
