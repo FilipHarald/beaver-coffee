@@ -20,19 +20,18 @@
     <div class="field"><router-link to="/manage_stock" class="button is-default">Manage stock</router-link></div>
     <div class="field"><router-link to="/manage_customers" class="button is-default">Manage customer</router-link></div>
     <div class="field"><router-link to="/manage_employees" class="button is-default">Manage employees</router-link></div>
-
-    <hr>
-
-    <h1 class="title">Global</h1>
-    <div class="field"><router-link to="/manage_products" class="button is-default">Manage products</router-link></div>
   </div>
 </template>
 
 <script>
+  import Store from '../mixins/store'
+
   export default {
+    mixins: [Store],
+
     data() {
       return {
-        selectedStore: null,
+        selectedStore: {},
         stores: [],
       }
     },
@@ -43,10 +42,15 @@
 
     methods: {
       getStores() {
-         this.$router.stores.then(res => this.stores = res)
+         this.$router.stores.then(res => {
+          this.stores = res
+          if (!this.$router.store)
+            this.$router.store = res[0]
+          this.selectedStore = this.$router.store
+        })
       },
 
-      setStore () {
+      setStore() {
         this.$router.store = this.selectedStore
       },
     }
