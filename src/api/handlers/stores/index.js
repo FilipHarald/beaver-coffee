@@ -17,14 +17,18 @@ export default ({ config, db}) => {
   store.get('/employees', employees.list)
   store.post('/employees', employees.create)
   store.put('/employees/:employeeId', employees.update)
+
   store.post('/stock', stock.create)
   store.put('/stock/:stockId', stock.update)
   store.delete('/stock/:stockId', stock.delete)
-  store.get('/report', report.getSales)
+
 
   store.get('/orders', orders.list)
   store.post('/orders', orders.create)
   store.put('/orders/:employeeId', orders.update)
+
+  store.get('/report', report.getSales)
+  store.get('/employees/:employeeId/report', report.employeeReport)
 
   return store
 }
