@@ -19,6 +19,7 @@ export default function Employees (Store) {
     try {
       const store = await Store.findOne({ _id: req.params.id })
       const items = req.body.items
+      const stock = store.get('stock')
 
       const groupedItems = items.reduce((acc, val) => {
         const item = acc.find(x => x._id === val._id)
@@ -29,17 +30,23 @@ export default function Employees (Store) {
         } else {
           item.amount++
         }
+
+        // Update stock
+        val.ingredients.map(ing => {
+          const stockItem = stock.find(s => s.name == ing.name)
+          stockItem.amount -= ing.amount
+        })
+
         return acc
       }, [])
 
-      console.log('groupedItems', groupedItems)
       req.body.total = groupedItems.reduce((acc, val) => acc + val.price * val.amount, 0)
       req.body.items = groupedItems
       req.body.date = new Date()
-      console.log('payload body', req.body)
 
       const order = store.orders.create(req.body)
       store.orders.push(order)
+
       await store.save()
       res.json(order)
     } catch (err) {
