@@ -61,7 +61,7 @@
 
         <div class="field">
           <div class="control">
-            <button href="#" type="submit" class="button is-success is-fullwidth" @click.stop="save">Save customer</button>
+            <button href="#" type="submit" class="button is-success is-fullwidth" @click.stop="save" :disabled="!valid">Save customer</button>
           </div>
         </div>
 
@@ -79,6 +79,7 @@
   export default {
     data() {
       return {
+        valid: false,
         errors: '',
         newCustomer: {
           personId: '',
@@ -95,7 +96,26 @@
       }
     },
 
+    watch: {
+      newCustomer: {
+        handler() {
+          this.valid = Object.keys(this.newCustomer).every(key => {
+            console.log('key', key)
+            return this.checkValidity(this.newCustomer, key)
+          })
+        },
+        deep: true
+      }
+    },
+
     methods: {
+      checkValidity(c, key) {
+        if (c[key] === Object(c[key]))
+          return Object.keys(c[key]).every(k => this.checkValidity(c[key], k))
+        else
+          return c[key] != ''
+      },
+
       save() {
         fetch('/api/customers', {
           method: 'post',

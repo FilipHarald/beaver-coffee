@@ -3,7 +3,7 @@
     <div v-if="!isHome">
       <div class="space-between">
         <router-link class="button" to="/">Back</router-link>
-        <div>{{ this.$router.store.name }}</div>
+        <div>{{ this.$router.store && this.$router.store.name }}</div>
       </div>
       <hr>
     </div>
