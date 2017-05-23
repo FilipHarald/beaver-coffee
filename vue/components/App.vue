@@ -48,4 +48,7 @@
   .space-between
     display: flex
     justify-content: space-between
+  .back-button
+    background-color: #ffb0b0;
+    float: right
 </style>

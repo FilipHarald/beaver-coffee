@@ -20,6 +20,7 @@
     <div class="field"><router-link to="/manage_stock" class="button is-default">Manage stock</router-link></div>
     <div class="field"><router-link to="/manage_customers" class="button is-default">Manage customer</router-link></div>
     <div class="field"><router-link to="/manage_employees" class="button is-default">Manage employees</router-link></div>
+    <div class="field"><router-link to="/run_reports" class="button is-default">Reports</router-link></div>
   </div>
 </template>
 
