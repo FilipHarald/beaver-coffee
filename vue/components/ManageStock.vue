@@ -4,7 +4,7 @@
       <div class="card-header">
         <div class="card-header-title space-between">
           <div>Manage stock</div>
-          <div class="field is-pulled-right">
+          <div class="field">
             <div class="control">
               <span class="select is-fullwidth">
                 <select v-model="selectedProduct">

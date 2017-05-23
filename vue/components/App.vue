@@ -1,7 +1,10 @@
 <template>
   <div class="section">
     <div v-if="!isHome">
-      <router-link class="button" to="/">Back</router-link>
+      <div class="space-between">
+        <router-link class="button" to="/">Back</router-link>
+        <div>{{ this.$router.store.name }}</div>
+      </div>
       <hr>
     </div>
     <router-view></router-view>
@@ -10,15 +13,14 @@
 
 <script>
   export default {
-    data () {
+    data() {
       return {
-
       }
     },
     computed: {
-      isHome () {
+      isHome() {
         return this.$route.path === '/'
-      }
+      },
     },
 
     created() {
@@ -38,5 +40,6 @@
 
 <style lang="stylus">
   .space-between
+    display: flex
     justify-content: space-between
 </style>
