@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import storeSchema from '../../../db/models/store'
 import Employees from './employees'
 import Orders from './orders'
 import Stock from './stock'
@@ -8,9 +7,10 @@ import utils from '../../utils'
 
 export default ({ config, db}) => {
   let store = Router({mergeParams: true})
-  const Store = db.model('Store', storeSchema)
+  const Store = db.model('Store')
+  const Customer = db.model('Customer')
   const employees = Employees(Store)
-  const orders = Orders(Store)
+  const orders = Orders(Store, Customer)
   const stock = Stock(Store)
   const report = Report(Store)
 

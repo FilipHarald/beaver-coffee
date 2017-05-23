@@ -1,6 +1,9 @@
 import utils from '../../utils'
 
-export default function Employees (Store) {
+
+
+
+export default function Employees (Store, Customer) {
   const list = async (req, res) => {
     try {
       const store = await Store.findOne({ _id: req.params.id }, { orders: 1 })
