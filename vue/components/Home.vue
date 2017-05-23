@@ -52,6 +52,7 @@
 
       setStore() {
         this.$router.store = this.selectedStore
+        this.$emit('route', this.selectedStore)
       },
     }
   }

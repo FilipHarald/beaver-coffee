@@ -3,16 +3,19 @@
     <div v-if="!isHome">
       <div class="space-between">
         <router-link class="button" to="/">Back</router-link>
-        <div>{{ this.$router.store && this.$router.store.name }}</div>
+        <div>{{ store && store.name }}</div>
       </div>
       <hr>
     </div>
-    <router-view></router-view>
+    <router-view @route="setStore"></router-view>
   </div>
 </template>
 
 <script>
+  import Store from '../mixins/store'
+
   export default {
+    mixins: [Store],
     data() {
       return {
       }
@@ -28,6 +31,9 @@
     },
 
     methods: {
+      setStore (store) {
+        this.store = store
+      },
       getStores() {
         this.$router.stores = fetch('/api/stores', { method: 'get' })
         .then(result => result.json())
