@@ -63,56 +63,55 @@
       </div>
     </div>
 
-    <div class="modal" ref="modal">
-      <div class="modal-background" @click="hide"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <div class="modal-card-title">Add new item</div>
-        </header>
-        <div class="modal-card-body">
-          <div class="field">
-            <label for="" class="label">Item</label>
-            <span class="select is-fullwidth">
-              <select v-model="newItem">
-                <option v-for="item in availableItems" :key="item._id" :value="item">{{ item.name }}</option>
-              </select>
-            </span>
-          </div>
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label for="" class="label">Amount</label>
-                <input type="text" class="input" v-model="newItem.amount">
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label for="" class="label">Unit</label>
-                <input type="text" v-model="newItem.unit" class="input" disabled>
-              </div>
-            </div>
-          </div>
-
-
+    <modal v-model="showModal">
+      <span slot="title">Add new item</span>
+      <div slot="body">
+        <div class="field">
+          <label for="" class="label">Item</label>
+          <span class="select is-fullwidth">
+            <select v-model="newItem">
+              <option v-for="item in availableItems" :key="item._id" :value="item">{{ item.name }}</option>
+            </select>
+          </span>
         </div>
-        <footer class="modal-card-foot">
-          <button class="button is-success" @click="add">Add</button>
-        </footer>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label for="" class="label">Amount</label>
+              <input type="text" class="input" v-model="newItem.amount">
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="" class="label">Unit</label>
+              <input type="text" v-model="newItem.unit" class="input" disabled>
+            </div>
+          </div>
+        </div>
       </div>
-      <button class="modal-close" @click="hide"></button>
-    </div>
+      <span slot="footer">
+        <button class="button is-success" @click="add">Add</button>
+      </span>
+    </modal>
+
   </div>
 </template>
 
 <script>
+  import Modal from './Modal'
   import Store from '../mixins/store'
   import Api from '../mixins/api'
 
   export default {
     mixins: [Store, Api],
 
+    components: {
+      Modal
+    },
+
     data () {
       return {
+        showModal: false,
         selectedProduct: {},
         newItem: {},
         availableItems: []
@@ -147,17 +146,13 @@
       },
 
       show () {
-        this.$refs.modal.classList.add('is-active')
         this.api('get', '/api/products')
           .then(res => res.json())
           .then(json => {
             this.availableItems = json.filter(i => i.productType === 'Ingredient')
+            this.showModal = true
           })
           .catch(err => console.log(err))
-      },
-
-      hide () {
-        this.$refs.modal.classList.remove('is-active')
       },
 
       add () {
@@ -165,7 +160,7 @@
           .then(res => res.json())
           .then(json => this.store.stock = json)
           .catch(err => console.log(err))
-          .then(() => this.hide())
+          .then(() => this.showModal = false)
       },
 
       del () {
