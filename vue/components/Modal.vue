@@ -1,6 +1,6 @@
 <template>
   <div class="modal" ref="modal">
-    <div class="modal-background" @click="hide"></div>
+    <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <div class="modal-card-title">

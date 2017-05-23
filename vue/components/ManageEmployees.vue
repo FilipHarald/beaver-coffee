@@ -20,7 +20,7 @@
           <div class="field">
             <label for="" class="label">ID (SSN/Personnummer)</label>
             <div class="control">
-              <input v-model="employee.personId" type="text" id="customer_id" class="input" autofocus>
+              <input v-model="employee.personId" type="text" id="customer_id" class="input" ref="personId" autofocus>
             </div>
           </div>
 
@@ -63,7 +63,7 @@
               <div class="field">
                 <label for="" class="label">Position</label>
                 <div class="control">
-                  <input v-model="newPosition.name" type="text" id="address" class="input">
+                  <input v-model="employee.positions[0].name" type="text" id="address" class="input">
                 </div>
               </div>
             </div>
@@ -71,7 +71,7 @@
               <div class="field">
                 <label for="" class="label">Work Percentage</label>
                 <div class="control">
-                  <input v-model="newPosition.workPercentage" type="text" id="address_zip" class="input">
+                  <input v-model="employee.positions[0].workPercentage" type="number" id="address_zip" class="input">
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@
 
           <div class="field">
             <div class="control">
-              <button href="#" type="submit" class="button is-success is-fullwidth" @click.stop="save">Save employee</button>
+              <button href="#" type="submit" class="button is-success is-fullwidth" @click.stop="save" :disabled="isNewEmployee && !valid">Save employee</button>
             </div>
           </div>
 
@@ -169,12 +169,14 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import Validation from '../mixins/validation'
   import Store from '../mixins/store'
   import Api from '../mixins/api'
   import Modal from './Modal'
 
   export default {
-    mixins: [Store, Api],
+    mixins: [Store, Api, Validation],
 
     components: {
       Modal,
@@ -182,6 +184,7 @@
 
     data () {
       return {
+        valid: false,
         showModal: false,
         isNewEmployee: false,
         newPosition: {
@@ -203,6 +206,7 @@
       reset () {
         this.employee = this.newEmployee()
         this.isNewEmployee = true
+        Vue.nextTick(() => this.$refs.personId.focus())
       },
 
       save () {
@@ -211,7 +215,6 @@
         if (this.employee._id) {
           promise = this.api('put', `/api/stores/${this.store._id}/employees/${this.employee._id}`, this.employee)
         } else {
-          this.employee.positions.push(this.newPosition)
           promise = this.api('post', `/api/stores/${this.store._id}/employees/`, this.employee)
         }
 
@@ -253,7 +256,10 @@
               name: ''
             }
           },
-          positions: []
+          positions: [{
+            name: '',
+            workPercentage: ''
+          }]
         }
       },
 
@@ -266,6 +272,12 @@
       employees () {
         this.selectedEmployee = this.employee && this.employees.find(e => e.name === this.employee.name) || this.employees[0]
         this.employee = this.selectedEmployee
+      },
+      employee: {
+        handler () {
+          this.valid = Object.keys(this.employee).every(key => this.checkValidity(this.employee, key))
+        },
+        deep: true
       }
     },
 

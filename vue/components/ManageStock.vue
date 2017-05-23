@@ -60,6 +60,12 @@
           </div>
         </div>
 
+        <div class="field">
+          <div class="control">
+            <pre v-if="errors" class="notification is-danger">{{ errors }}</pre>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -78,7 +84,7 @@
           <div class="column">
             <div class="field">
               <label for="" class="label">Amount</label>
-              <input type="text" class="input" v-model="newItem.amount">
+              <input type="number" class="input" v-model="newItem.amount">
             </div>
           </div>
           <div class="column">
@@ -92,6 +98,12 @@
       <span slot="footer">
         <button class="button is-success" @click="add">Add</button>
       </span>
+    </modal>
+
+    <modal v-model="showEditModal">
+      <span slot="title">Good job!</span>
+      <span slot="body">{{ editText }}</span>
+      <button slot="footer" class="button is-info" @click="showEditModal = false">close</button>
     </modal>
 
   </div>
@@ -111,6 +123,9 @@
 
     data () {
       return {
+        showEditModal: false,
+        errors: '',
+        editText: '',
         showModal: false,
         selectedProduct: {},
         newItem: {},
@@ -132,17 +147,23 @@
 
     methods: {
       save () {
+        this.errors = ''
         this.api('put', `/api/stores/${this.store._id}/stock/${this.selectedProduct._id}`, this.selectedProduct)
-          .then(result => {
+          .then(result => Promise.all([result, result.json()]))
+          .then(promises => {
+            const [result, json] = promises
+
             if (!result.ok) {
-              result.json().then(x => {
-                this.errors = result.status < 500 ? x.message : x.errmsg
-              })
+              this.errors = JSON.stringify(json, null, 2)
             } else {
-              result.json().then(x => this.store.stock = x)
+              this.store.stock = json
+              this.editText = 'Stock saved!'
+              this.showEditModal = true
             }
           })
-          .catch(err => console.log(err))
+          .catch(err => {
+            this.errors = JSON.stringify(err, null, 2)
+          })
       },
 
       show () {
@@ -158,23 +179,30 @@
       add () {
         this.api('post', `/api/stores/${this.store._id}/stock`, this.newItem)
           .then(res => res.json())
-          .then(json => this.store.stock = json)
+          .then(json => {
+            this.store.stock = json.reverse()
+          })
           .catch(err => console.log(err))
           .then(() => this.showModal = false)
       },
 
       del () {
         this.api('delete', `/api/stores/${this.store._id}/stock/${this.selectedProduct._id}`)
-          .then(result => {
+          .then(result => Promise.all([result, result.json()]))
+          .then(promises => {
+            const [result, json] = promises
+
             if (!result.ok) {
-              result.json().then(x => {
-                this.errors = result.status < 500 ? x.message : x.errmsg
-              })
+              this.errors = JSON.stringify(json, null, 2)
             } else {
-              result.json().then(x => this.store.stock = x)
+              this.store.stock = json
+              this.editText = 'Deleted stock!'
+              this.showEditModal = true
             }
           })
-          .catch(err => console.log(err))
+          .catch(err => {
+            this.errors = JSON.stringify(err, null, 2)
+          })
       },
 
       emptyItem () {

@@ -11,15 +11,15 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
 	 */
   load(req, id, callback) {
     MongooseModel.findOne( {_id: id} )
-    .then((obj) => {
-      if (!obj) {
-        callback(modelName + ' not found', null)
-      } else {
-        callback(null, obj)
-      }
-    }, (err) => {
-      callback(err, null)
-    })
+      .then((obj) => {
+        if (!obj) {
+          callback(modelName + ' not found', null)
+        } else {
+          callback(null, obj)
+        }
+      }, (err) => {
+        callback(err, null)
+      })
   },
 
   /** GET / - List all entities */
@@ -50,13 +50,15 @@ export default ({ config, db , MongooseModel, modelName}) => resource({
   },
 
   /** PUT /:id - Update a given entity */
-  update({ obj, body }, res) {
-    obj.update(body)
-    .then((result) => {
-     res.status(204).json(result)
-   }).catch((err) => {
-     utils.handleError(err, res)
-   })
+  update(req, res) {
+    const model = req[modelName]
+    const body = req.body
+    model.update(body)
+      .then((result) => {
+        res.status(200).json(result)
+      }).catch((err) => {
+        utils.handleError(err, res)
+      })
   },
 
   /** DELETE /:id - Delete a given entity */
