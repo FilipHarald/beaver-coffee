@@ -119,10 +119,10 @@ const stores = [
         name: 'Germany'
       }
     },
-    position: {
+    positions: [{
       name: 'Cashier',
       workPercentage: 100
-    }
+    }]
   },
   {
     personId: '19991212-3939',
@@ -134,10 +134,10 @@ const stores = [
         name: 'USA'
       }
     },
-    position: {
+    positions: [{
       name: 'Manager',
       workPercentage: 100
-    }
+    }]
   },
   {
     personId: '1337-7331',
@@ -149,10 +149,10 @@ const stores = [
         name: 'United Kingdom'
       }
     },
-    position: {
+    positions: [{
       name: 'Cashier',
       workPercentage: 50
-    },
+    }],
     comments: []
   }
   ]
@@ -180,10 +180,10 @@ const stores = [
         name: 'Germany'
       }
     },
-    position: {
+    positions: [{
       name: 'Cashier',
       workPercentage: 100
-    }
+    }]
   },
   {
     personId: '19991212-393',
@@ -195,10 +195,10 @@ const stores = [
         name: 'USA'
       }
     },
-    position: {
+    positions: [{
       name: 'Manager',
       workPercentage: 100
-    }
+    }]
   }
   ]
 },
