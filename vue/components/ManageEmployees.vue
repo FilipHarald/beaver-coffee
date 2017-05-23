@@ -109,6 +109,7 @@
                     <span class="is-pulled-right"><strong>{{ position.workPercentage }}%</strong></span>
                   </div>
                   Started {{ position.startDate | date('YYYY-MM-DD') }}
+                  <span v-if="position.endDate"> and quit at {{ position.endDate | date('YYYY-MM-DD') }}</span>
                 </p>
               </div>
             </article>
@@ -122,7 +123,7 @@
             <article class="media">
               <div class="media-content">
                 <p>
-                  <strong>{{ author(comment).name }}</strong> ({{ comment.date }})
+                  <strong>{{ author(comment).name }}</strong> ({{ comment.date | date('YYYY-MM-DD HH:MM:ss') }})
                   <br>
                   {{ comment.text }}
                 </p>

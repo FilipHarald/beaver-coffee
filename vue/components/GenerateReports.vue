@@ -115,12 +115,6 @@
         url = `${url}/report?from=${this.fromDate}&to=${this.toDate}`
         this.api('get', url)
         .then(result => {
-          if (result.status == 404) {
-            return Promise.reject({
-              message: "Not found",
-              status: 404
-            })
-          }
           if (result.status >= 400) {
             return result.json().then(x => {
               x.status = result.status
