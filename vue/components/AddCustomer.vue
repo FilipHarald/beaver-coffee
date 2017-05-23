@@ -99,10 +99,7 @@
     watch: {
       newCustomer: {
         handler() {
-          this.valid = Object.keys(this.newCustomer).every(key => {
-            console.log('key', key)
-            return this.checkValidity(this.newCustomer, key)
-          })
+          this.valid = Object.keys(this.newCustomer).every(key => this.checkValidity(this.newCustomer, key))
         },
         deep: true
       }
