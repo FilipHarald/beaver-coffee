@@ -158,6 +158,51 @@ const stores = [
   ]
 },
 {
+  name: 'BeaverCoffee Boston',
+  location: {
+    address: 'Daniels St.',
+    zip: '999999',
+    country: {
+      name: 'United States of America',
+      currency: 'USD',
+      countryCode: 'USA'
+    }
+  },
+  stock: fullStock,
+  employees: [
+  {
+    personId: '111-22-3333',
+    name: 'Donald Duck',
+    location: {
+      address: 'Duck st.',
+      zip: '999998',
+      country: {
+        name: 'United States of America'
+      }
+    },
+    positions: [{
+      name: 'Cashier',
+      workPercentage: 100
+    }]
+  },
+  {
+    personId: '333-22-1111',
+    name: 'Jackie Chan',
+    location: {
+      address: 'Charles st.',
+      zip: '899999',
+      country: {
+        name: 'United States of America'
+      }
+    },
+    positions: [{
+      name: 'Manager',
+      workPercentage: 100
+    }]
+  }
+  ]
+},
+{
   name: 'BeaverCoffee Lund',
   location: {
     address: 'Lolvägen 1',
