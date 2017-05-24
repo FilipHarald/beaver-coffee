@@ -52,13 +52,13 @@
 
           <div class="field">
             <div class="control">
-              <button href="#" @click.stop="save" type="submit" class="button is-success is-fullwidth" :disabled="!newOrder.items.length || !newOrder.cashier">Place order</button>
+              <button href="#" @click.stop="save" class="button is-success is-fullwidth" :disabled="!newOrder.items.length || !newOrder.cashier">Place order</button>
             </div>
           </div>
 
           <div class="field">
             <div class="control">
-              <div v-if="errors" class="notification is-danger">{{ errors }}</div>
+              <pre v-if="errors" class="notification is-danger">{{ errors }}</pre>
             </div>
           </div>
 
@@ -87,9 +87,10 @@
 <script>
   import Modal from './Modal'
   import Store from '../mixins/store'
+  import Api from '../mixins/api'
 
   export default {
-    mixins: [Store],
+    mixins: [Store, Api],
 
     components: {
       Modal,
@@ -135,16 +136,17 @@
       },
 
       setStore(storeId) {
-        fetch(`/api/stores/${storeId}`, { method: 'get' })
-          .then(result => result.json().then(x => this.store = x))
-          .catch(err => console.log(err))
+        this.api('get', `/api/stores/${storeId}`)
+          .then(result => json.result())
+          .then(json => this.store = json)
+          .catch(err => this.errors = JSON.stringify(err.message || err, null, 2))
       },
 
       getProducts() {
-        fetch('/api/products', { method: 'get' })
+        this.api('get', '/api/products')
           .then(result => result.json())
           .then(x => this.products = x.filter(f => f.productType === 'Product'))
-          .catch(err => console.log(err))
+          .catch(err => this.errors = JSON.stringify(err.message || err, null, 2))
       },
 
       addProduct() {
@@ -153,25 +155,26 @@
       },
 
       save() {
+        this.errors = ''
+
         if (this.newOrder.customer === '')
           delete this.newOrder.customer
 
-        fetch(`/api/stores/${this.store._id}/orders`, {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(this.newOrder)
-        })
-        .then(result => {
-          if (!result.ok) {
-            result.json().then(x => this.errors = result.status < 500 ? x.message : x.errmsg)
-          } else {
-            result.json().then(order => {
-              this.savedOrder = order
+        this.api('post', `/api/stores/${this.store._id}/orders`, this.newOrder)
+          .then(result => Promise.all([result, result.json()]))
+          .then(promises => {
+            const [result, json] = promises
+
+            if (!result.ok) {
+              this.errors = JSON.stringify(json, null, 2)
+            } else {
+              this.savedOrder = json
               this.showModal = true
-            })
-          }
-        })
-        .catch(err => console.log(err))
+            }
+          })
+          .catch(err => {
+            this.errors = JSON.stringify(err.message || err, null, 2)
+          })
       },
 
       clear() {

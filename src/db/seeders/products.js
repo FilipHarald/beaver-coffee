@@ -69,7 +69,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 20,
-      en: 2.5
+      us: 2.5
     },
     ingredients: [
       {
@@ -84,7 +84,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 25,
-      en: 3
+      us: 3
     },
     ingredients: [
       {
@@ -99,7 +99,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -119,7 +119,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -139,7 +139,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -159,7 +159,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 35,
-      en: 4
+      us: 4
     },
     ingredients: [
       {
@@ -179,7 +179,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -199,7 +199,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -219,7 +219,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 40,
-      en: 4.5
+      us: 4.5
     },
     ingredients: [
       {
@@ -239,7 +239,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 35,
-      en: 4
+      us: 4
     },
     ingredients: [
       {
@@ -259,7 +259,7 @@ let products = [
     unit: 'kg',
     price: {
       se: 100,
-      en: 12
+      us: 12
     },
     ingredients: [
       {
@@ -274,7 +274,7 @@ let products = [
     unit: 'kg',
     price: {
       se: 100,
-      en: 12
+      us: 12
     },
     ingredients: [
       {
@@ -289,7 +289,7 @@ let products = [
     unit: 'kg',
     price: {
       se: 100,
-      en: 12
+      us: 12
     },
     ingredients: [
       {
@@ -304,7 +304,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 5,
-      en: .5
+      us: .5
     },
     ingredients: [
       {
@@ -319,7 +319,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 5,
-      en: .5
+      us: .5
     },
     ingredients: [
       {
@@ -334,7 +334,7 @@ let products = [
     unit: 'pcs',
     price: {
       se: 5,
-      en: .5
+      us: .5
     },
     ingredients: [
       {

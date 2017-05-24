@@ -165,7 +165,7 @@ const stores = [
     country: {
       name: 'United States of America',
       currency: 'USD',
-      countryCode: 'USA'
+      countryCode: 'US'
     }
   },
   stock: fullStock,
