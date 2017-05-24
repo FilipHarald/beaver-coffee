@@ -5,65 +5,61 @@
         <div class="card-header-title">Enter an order</div>
       </div>
       <div class="card-content">
-        <form action="">
-          <div class="field">
-            <label for="" class="label">Customer ID</label>
-            <div class="control">
-              <input ref="customer" v-model="newOrder.customer" type="text" class="input" autofocus>
-            </div>
+        <div class="field">
+          <label for="" class="label">Customer ID</label>
+          <div class="control">
+            <input ref="customer" v-model="newOrder.customer" type="text" class="input" autofocus>
           </div>
+        </div>
 
-          <div class="field">
-            <label for="" class="label">Product(s)</label>
-            <div class="control">
-              <span class="select is-fullwidth">
-                <select @change="addProduct" v-model="selectedProduct" name="products" id="products">
-                  <option v-for="product in products" :key="product._id" :value="product">{{ product.name }}</option>
-                </select>
-              </span>
-            </div>
+        <div class="field">
+          <label for="" class="label">Product(s)</label>
+          <div class="control">
+            <span class="select is-fullwidth">
+              <select @change="addProduct" v-model="selectedProduct" name="products" id="products">
+                <option v-for="product in products" :key="product._id" :value="product">{{ product.name }}</option>
+              </select>
+            </span>
           </div>
-          <div class="field">
-            <div class="control">
-              <ul>
-                <li v-for="(item, index) in newOrder.items" :key="item._id" class="tag is-medium">{{ item.name }}
-                  <button @click="removeItem(index)" class="delete is-small" style="margin-left: auto"></button>
-                </li>
-              </ul>
-            </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <ul>
+              <li v-for="(item, index) in newOrder.items" :key="item._id" class="tag is-medium">{{ item.name }}
+                <button @click="removeItem(index)" class="delete is-small" style="margin-left: auto"></button>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div class="field">
-            <label for="" class="label">Cashier</label>
-            <div class="control">
-              <span class="select is-fullwidth">
-                <select v-model="newOrder.cashier">
-                  <option v-for="cashier in cashiers" :key="cashier._id" :value="cashier._id">{{ cashier.name }}</option>
-                </select>
-              </span>
-            </div>
+        <div class="field">
+          <label for="" class="label">Cashier</label>
+          <div class="control">
+            <span class="select is-fullwidth">
+              <select v-model="newOrder.cashier">
+                <option v-for="cashier in cashiers" :key="cashier._id" :value="cashier._id">{{ cashier.name }}</option>
+              </select>
+            </span>
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <button @click="clear" href="#" class="button is-default is-fullwidth">Clear fields</button>
-            </div>
+        <div class="field">
+          <div class="control">
+            <button @click="clear" href="#" class="button is-default is-fullwidth">Clear fields</button>
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <button href="#" @click.stop="save" class="button is-success is-fullwidth" :disabled="!newOrder.items.length || !newOrder.cashier">Place order</button>
-            </div>
+        <div class="field">
+          <div class="control">
+            <button href="#" @click.stop="save" class="button is-success is-fullwidth" :disabled="!newOrder.items.length || !newOrder.cashier">Place order</button>
           </div>
+        </div>
 
-          <div class="field">
-            <div class="control">
-              <pre v-if="errors" class="notification is-danger">{{ errors }}</pre>
-            </div>
+        <div class="field">
+          <div class="control">
+            <pre v-if="errors" class="notification is-danger">{{ errors }}</pre>
           </div>
-
-        </form>
-
+        </div>
       </div>
     </div>
 
